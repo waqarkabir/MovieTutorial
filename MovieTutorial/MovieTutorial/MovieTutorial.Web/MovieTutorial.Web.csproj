@@ -1724,6 +1724,7 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.ShipperFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160519_145500_MovieKind.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160519_135200_SampleMovies.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160519_115100_MovieTable.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160515_072600_UserPreferences.cs" />
