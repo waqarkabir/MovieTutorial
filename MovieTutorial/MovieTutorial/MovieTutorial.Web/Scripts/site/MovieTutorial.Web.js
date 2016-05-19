@@ -2667,7 +2667,20 @@ var MovieTutorial;
             return MovieForm;
         }(Serenity.PrefixedContext));
         MovieDB.MovieForm = MovieForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['Year', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['Year', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
+})(MovieTutorial || (MovieTutorial = {}));
+var MovieTutorial;
+(function (MovieTutorial) {
+    var MovieDB;
+    (function (MovieDB) {
+        (function (MovieKind) {
+            MovieKind[MovieKind["Film"] = 1] = "Film";
+            MovieKind[MovieKind["TvSeries"] = 2] = "TvSeries";
+            MovieKind[MovieKind["MiniSeries"] = 3] = "MiniSeries";
+        })(MovieDB.MovieKind || (MovieDB.MovieKind = {}));
+        var MovieKind = MovieDB.MovieKind;
+        Serenity.Decorators.registerEnum(MovieKind, 'MovieDB.MovieKind');
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));
 var MovieTutorial;
@@ -2682,7 +2695,7 @@ var MovieTutorial;
             var Fields;
             (function (Fields) {
             })(Fields = MovieRow.Fields || (MovieRow.Fields = {}));
-            ['MovieId', 'Title', 'Description', 'Storyline', 'Year', 'ReleaseDate', 'Runtime'].forEach(function (x) { return Fields[x] = x; });
+            ['MovieId', 'Title', 'Description', 'Storyline', 'Year', 'ReleaseDate', 'Runtime', 'Kind'].forEach(function (x) { return Fields[x] = x; });
         })(MovieRow = MovieDB.MovieRow || (MovieDB.MovieRow = {}));
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));

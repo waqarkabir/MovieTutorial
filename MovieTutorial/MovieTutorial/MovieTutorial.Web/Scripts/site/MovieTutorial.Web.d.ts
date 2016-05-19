@@ -1054,7 +1054,15 @@ declare namespace MovieTutorial.MovieDB {
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
+        Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
+    }
+}
+declare namespace MovieTutorial.MovieDB {
+    enum MovieKind {
+        Film = 1,
+        TvSeries = 2,
+        MiniSeries = 3,
     }
 }
 declare namespace MovieTutorial.MovieDB {
@@ -1066,6 +1074,7 @@ declare namespace MovieTutorial.MovieDB {
         Year?: number;
         ReleaseDate?: string;
         Runtime?: number;
+        Kind?: MovieKind;
     }
     namespace MovieRow {
         const idProperty: string;
@@ -1079,6 +1088,7 @@ declare namespace MovieTutorial.MovieDB {
             const Year: string;
             const ReleaseDate: string;
             const Runtime: string;
+            const Kind: string;
         }
     }
 }
