@@ -43,7 +43,7 @@ namespace MovieTutorial.MovieDB.Entities
             set { Fields.Storyline[this] = value; }
         }
 
-        [DisplayName("Year")]
+        [DisplayName("Year"), QuickSearch(SearchType.Equals, numericOnly: 1)]
         public Int32? Year
         {
             get { return Fields.Year[this]; }
