@@ -14,7 +14,7 @@ namespace MovieTutorial.Migrations.DefaultDB
 
             Alter.Table("Movie").InSchema("mov")
                 .AddColumn("GenreId").AsInt32().Nullable()
-                    .ForeignKey("FK_Movie_GenreId", "mov", "Movie", "MovieId");
+                    .ForeignKey("FK_Movie_GenreId", "mov", "Genre", "GenreId");
         }
 
         public override void Down()
