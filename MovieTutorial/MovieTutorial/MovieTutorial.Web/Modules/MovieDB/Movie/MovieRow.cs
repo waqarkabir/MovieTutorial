@@ -72,7 +72,7 @@ namespace MovieTutorial.MovieDB.Entities
         }
 
         [DisplayName("Genre"), ForeignKey("[mov].Genre", "GenreId"), LeftJoin("g")]
-        [LookupEditor(typeof(GenreRow))]
+        [LookupEditor(typeof(GenreRow), InplaceAdd = true)]
         public Int32? GenreId
         {
             get { return Fields.GenreId[this]; }
