@@ -64,6 +64,13 @@ namespace MovieTutorial.MovieDB.Entities
             set { Fields.Runtime[this] = value; }
         }
 
+        [DisplayName("Kind"), NotNull]
+        public MovieKind? Kind
+        {
+            get { return (MovieKind?)Fields.Kind[this]; }
+            set { Fields.Kind[this] = (Int32?)value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.MovieId; }
@@ -90,6 +97,7 @@ namespace MovieTutorial.MovieDB.Entities
             public Int32Field Year;
             public DateTimeField ReleaseDate;
             public Int32Field Runtime;
+            public Int32Field Kind;
 
             public RowFields()
                 : base("[mov].[Movie]")
