@@ -1,13 +1,9 @@
 
 namespace MovieTutorial.MovieDB.Columns
 {
-    using Serenity;
     using Serenity.ComponentModel;
-    using Serenity.Data;
     using System;
     using System.ComponentModel;
-    using System.Collections.Generic;
-    using System.IO;
 
     [ColumnsScript("MovieDB.Movie")]
     [BasedOnRow(typeof(Entities.MovieRow))]
@@ -21,6 +17,8 @@ namespace MovieTutorial.MovieDB.Columns
         public String Storyline { get; set; }
         public Int32 Year { get; set; }
         public DateTime ReleaseDate { get; set; }
+        [Width(100)]
+        public String GenreName { get; set; }
         [DisplayName("Runtime in Minutes"), Width(150), AlignRight]
         public Int32 Runtime { get; set; }
     }
