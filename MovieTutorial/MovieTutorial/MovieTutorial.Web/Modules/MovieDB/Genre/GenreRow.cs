@@ -13,6 +13,7 @@ namespace MovieTutorial.MovieDB.Entities
     [ConnectionKey("Default"), DisplayName("Genre"), InstanceName("Genre"), TwoLevelCached]
     [ReadPermission("Administration")]
     [ModifyPermission("Administration")]
+    [LookupScript("MovieDB.Genre")]
     public sealed class GenreRow : Row, IIdRow, INameRow
     {
         [DisplayName("Genre Id"), Identity]
