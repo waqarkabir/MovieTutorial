@@ -394,6 +394,26 @@ declare namespace MovieTutorial.Northwind {
         constructor(container: JQuery);
     }
 }
+declare namespace MovieTutorial.MovieDB {
+    class MovieDialog extends Serenity.EntityDialog<MovieRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MovieForm;
+    }
+}
+declare namespace MovieTutorial.MovieDB {
+    class MovieGrid extends Serenity.EntityGrid<MovieRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MovieDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
 declare namespace MovieTutorial.Membership {
     class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
         protected getFormKey(): string;
@@ -1019,6 +1039,61 @@ declare namespace MovieTutorial.Membership {
         DisplayName?: string;
         Email?: string;
         Password?: string;
+    }
+}
+declare namespace MovieTutorial.MovieDB {
+    class MovieForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MovieForm {
+        Title: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        Storyline: Serenity.StringEditor;
+        Year: Serenity.IntegerEditor;
+        ReleaseDate: Serenity.DateEditor;
+        Runtime: Serenity.IntegerEditor;
+    }
+}
+declare namespace MovieTutorial.MovieDB {
+    interface MovieRow {
+        MovieId?: number;
+        Title?: string;
+        Description?: string;
+        Storyline?: string;
+        Year?: number;
+        ReleaseDate?: string;
+        Runtime?: number;
+    }
+    namespace MovieRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const MovieId: any;
+            const Title: any;
+            const Description: any;
+            const Storyline: any;
+            const Year: any;
+            const ReleaseDate: any;
+            const Runtime: any;
+        }
+    }
+}
+declare namespace MovieTutorial.MovieDB {
+    namespace MovieService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MovieRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MovieRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MovieRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MovieRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
     }
 }
 declare namespace MovieTutorial.Northwind {

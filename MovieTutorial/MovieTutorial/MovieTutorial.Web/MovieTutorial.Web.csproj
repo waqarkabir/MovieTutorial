@@ -1627,6 +1627,12 @@
     <TypeScriptCompile Include="Scripts\typings\slickgrid\slickgrid.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\sortablejs\sortablejs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
+    <Content Include="Modules\MovieDB\Movie\MovieIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieRow.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieService.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieForm.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\MovieDB\Movie\MovieGrid.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\Movie\MovieDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1881,6 +1887,12 @@
     <Compile Include="Modules\Northwind\SalesByCategory\SalesByCategoryColumns.cs" />
     <Compile Include="Modules\Northwind\SalesByCategory\SalesByCategoryRepository.cs" />
     <Compile Include="Modules\Northwind\SalesByCategory\SalesByCategoryEndpoint.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieRow.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieColumns.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieForm.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieRepository.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieEndpoint.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MoviePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
