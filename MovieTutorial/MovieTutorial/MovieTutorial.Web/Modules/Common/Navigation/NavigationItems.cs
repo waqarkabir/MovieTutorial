@@ -7,7 +7,8 @@ using MovieDB = MovieTutorial.MovieDB.Pages;
 [assembly: NavigationLink(1000, "Dashboard", url: "~/", permission: "", icon: "icon-speedometer")]
 
 [assembly: NavigationMenu(2000, "Movie Database", icon: "icon-film")]
-[assembly: NavigationLink(2100, "Movie Database/Movies", typeof(MovieDB.MovieController), icon: "icon-camcorder")]
+[assembly: NavigationLink(2100, "Movie Database/Movies", typeof(MovieDB.MovieController), icon: "icon-camrecorder")]
+[assembly: NavigationLink(2200, "Movie Database/Genres", typeof(MovieDB.GenreController), icon: "icon-pin")]
 
 [assembly: NavigationMenu(7000, "Northwind", icon: "icon-anchor")]
 [assembly: NavigationLink(7100, "Northwind/Customers", typeof(Northwind.CustomerController), icon: "icon-wallet")]
