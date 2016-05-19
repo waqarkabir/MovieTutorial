@@ -64,7 +64,7 @@ namespace MovieTutorial.MovieDB.Entities
             set { Fields.Runtime[this] = value; }
         }
 
-        [DisplayName("Kind"), NotNull]
+        [DisplayName("Kind"), NotNull, DefaultValue(MovieKind.Film)]
         public MovieKind? Kind
         {
             get { return (MovieKind?)Fields.Kind[this]; }
