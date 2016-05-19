@@ -1063,6 +1063,8 @@ declare namespace MovieTutorial.Membership {
     }
 }
 declare namespace MovieTutorial.MovieDB {
+}
+declare namespace MovieTutorial.MovieDB {
     class GenreForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -1079,20 +1081,22 @@ declare namespace MovieTutorial.MovieDB {
         const idProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<GenreRow>;
         namespace Fields {
-            const GenreId: any;
-            const Name: any;
+            const GenreId: string;
+            const Name: string;
         }
     }
 }
 declare namespace MovieTutorial.MovieDB {
     namespace GenreService {
         const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<GenreRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<GenreRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<GenreRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<GenreRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Create(request: Serenity.SaveRequest<GenreRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<GenreRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<GenreRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<GenreRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
@@ -1114,6 +1118,7 @@ declare namespace MovieTutorial.MovieDB {
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
+        GenreId: Serenity.LookupEditor;
         Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
     }
@@ -1135,6 +1140,8 @@ declare namespace MovieTutorial.MovieDB {
         ReleaseDate?: string;
         Runtime?: number;
         Kind?: MovieKind;
+        GenreId?: number;
+        GenreName?: string;
     }
     namespace MovieRow {
         const idProperty: string;
@@ -1149,6 +1156,8 @@ declare namespace MovieTutorial.MovieDB {
             const ReleaseDate: string;
             const Runtime: string;
             const Kind: string;
+            const GenreId: string;
+            const GenreName: string;
         }
     }
 }
