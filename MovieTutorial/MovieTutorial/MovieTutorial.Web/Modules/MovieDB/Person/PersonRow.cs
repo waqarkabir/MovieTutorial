@@ -13,6 +13,7 @@ namespace MovieTutorial.MovieDB.Entities
     [ConnectionKey("Default"), DisplayName("Person"), InstanceName("Person"), TwoLevelCached]
     [ReadPermission("Administration")]
     [ModifyPermission("Administration")]
+    [LookupScript("MovieDB.Person")]
     public sealed class PersonRow : Row, IIdRow, INameRow
     {
         [DisplayName("Person Id"), Identity]
