@@ -1642,30 +1642,6 @@ var MovieTutorial;
         MovieDB.PersonGrid = PersonGrid;
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));
-var MovieTutorial;
-(function (MovieTutorial) {
-    var MovieDB;
-    (function (MovieDB) {
-        var MovieCastDialog = (function (_super) {
-            __extends(MovieCastDialog, _super);
-            function MovieCastDialog() {
-                _super.apply(this, arguments);
-                this.form = new MovieDB.MovieCastForm(this.idPrefix);
-            }
-            MovieCastDialog.prototype.getFormKey = function () { return MovieDB.MovieCastForm.formKey; };
-            MovieCastDialog.prototype.getIdProperty = function () { return MovieDB.MovieCastRow.idProperty; };
-            MovieCastDialog.prototype.getLocalTextPrefix = function () { return MovieDB.MovieCastRow.localTextPrefix; };
-            MovieCastDialog.prototype.getNameProperty = function () { return MovieDB.MovieCastRow.nameProperty; };
-            MovieCastDialog.prototype.getService = function () { return MovieCastService.baseUrl; };
-            MovieCastDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], MovieCastDialog);
-            return MovieCastDialog;
-        }(Serenity.EntityDialog));
-        MovieDB.MovieCastDialog = MovieCastDialog;
-    })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
-})(MovieTutorial || (MovieTutorial = {}));
 /// <reference path="../../Common/Helpers/GridEditorBase.ts" />
 var MovieTutorial;
 (function (MovieTutorial) {
@@ -1684,28 +1660,6 @@ var MovieTutorial;
             return MovieCastEditor;
         }(MovieTutorial.Common.GridEditorBase));
         MovieDB.MovieCastEditor = MovieCastEditor;
-    })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
-})(MovieTutorial || (MovieTutorial = {}));
-var MovieTutorial;
-(function (MovieTutorial) {
-    var MovieDB;
-    (function (MovieDB) {
-        var MovieCastGrid = (function (_super) {
-            __extends(MovieCastGrid, _super);
-            function MovieCastGrid(container) {
-                _super.call(this, container);
-            }
-            MovieCastGrid.prototype.getColumnsKey = function () { return 'MovieDB.MovieCast'; };
-            MovieCastGrid.prototype.getDialogType = function () { return MovieDB.MovieCastDialog; };
-            MovieCastGrid.prototype.getIdProperty = function () { return MovieDB.MovieCastRow.idProperty; };
-            MovieCastGrid.prototype.getLocalTextPrefix = function () { return MovieDB.MovieCastRow.localTextPrefix; };
-            MovieCastGrid.prototype.getService = function () { return MovieCastService.baseUrl; };
-            MovieCastGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], MovieCastGrid);
-            return MovieCastGrid;
-        }(Serenity.EntityGrid));
-        MovieDB.MovieCastGrid = MovieCastGrid;
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));
 var MovieTutorial;
@@ -2950,7 +2904,7 @@ var MovieTutorial;
             return MovieForm;
         }(Serenity.PrefixedContext));
         MovieDB.MovieForm = MovieForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['Year', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['GenreList', function () { return Serenity.LookupEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['CastList', function () { return MovieDB.MovieCastEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['Year', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['GenreList', function () { return Serenity.LookupEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));
 var MovieTutorial;

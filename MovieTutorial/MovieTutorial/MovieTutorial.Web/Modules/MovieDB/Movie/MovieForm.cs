@@ -1,13 +1,9 @@
 
 namespace MovieTutorial.MovieDB.Forms
 {
-    using Serenity;
     using Serenity.ComponentModel;
-    using Serenity.Data;
     using System;
-    using System.ComponentModel;
     using System.Collections.Generic;
-    using System.IO;
 
     [FormScript("MovieDB.Movie")]
     [BasedOnRow(typeof(Entities.MovieRow))]
@@ -16,6 +12,8 @@ namespace MovieTutorial.MovieDB.Forms
         public String Title { get; set; }
         [TextAreaEditor(Rows = 3)]
         public String Description { get; set; }
+        [MovieCastEditor]
+        public List<Entities.MovieCastRow> CastList { get; set; }
         [TextAreaEditor(Rows = 8)]
         public String Storyline { get; set; }
         public Int32 Year { get; set; }

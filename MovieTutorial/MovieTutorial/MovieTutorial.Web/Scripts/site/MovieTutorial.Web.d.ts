@@ -415,29 +415,9 @@ declare namespace MovieTutorial.MovieDB {
     }
 }
 declare namespace MovieTutorial.MovieDB {
-    class MovieCastDialog extends Serenity.EntityDialog<MovieCastRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): any;
-        protected form: MovieCastForm;
-    }
-}
-declare namespace MovieTutorial.MovieDB {
     class MovieCastEditor extends Common.GridEditorBase<MovieCastRow> {
         protected getColumnsKey(): string;
         protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace MovieTutorial.MovieDB {
-    class MovieCastGrid extends Serenity.EntityGrid<MovieCastRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MovieCastDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): any;
         constructor(container: JQuery);
     }
 }
@@ -1230,6 +1210,7 @@ declare namespace MovieTutorial.MovieDB {
     interface MovieForm {
         Title: Serenity.StringEditor;
         Description: Serenity.TextAreaEditor;
+        CastList: MovieCastEditor;
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
