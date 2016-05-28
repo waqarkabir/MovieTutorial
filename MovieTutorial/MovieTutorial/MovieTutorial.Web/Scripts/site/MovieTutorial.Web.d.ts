@@ -1269,6 +1269,8 @@ declare namespace MovieTutorial.MovieDB {
         const idProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<PersonRow>;
         namespace Fields {
             const PersonId: string;
             const Firstname: string;

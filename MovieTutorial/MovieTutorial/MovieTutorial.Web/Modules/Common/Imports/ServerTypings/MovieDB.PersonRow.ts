@@ -14,6 +14,11 @@
         export const idProperty = 'PersonId';
         export const nameProperty = 'Fullname';
         export const localTextPrefix = 'MovieDB.Person';
+        export const lookupKey = 'MovieDB.Person';
+
+        export function getLookup(): Q.Lookup<PersonRow> {
+            return Q.getLookup<PersonRow>('MovieDB.Person');
+        }
 
         export namespace Fields {
             export declare const PersonId: string;

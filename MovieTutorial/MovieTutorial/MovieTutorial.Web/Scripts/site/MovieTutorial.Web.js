@@ -2941,6 +2941,11 @@ var MovieTutorial;
             PersonRow.idProperty = 'PersonId';
             PersonRow.nameProperty = 'Fullname';
             PersonRow.localTextPrefix = 'MovieDB.Person';
+            PersonRow.lookupKey = 'MovieDB.Person';
+            function getLookup() {
+                return Q.getLookup('MovieDB.Person');
+            }
+            PersonRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = PersonRow.Fields || (PersonRow.Fields = {}));
