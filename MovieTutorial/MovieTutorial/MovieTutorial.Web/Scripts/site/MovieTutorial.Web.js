@@ -1666,6 +1666,26 @@ var MovieTutorial;
         MovieDB.MovieCastDialog = MovieCastDialog;
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var MovieTutorial;
+(function (MovieTutorial) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieCastEditor = (function (_super) {
+            __extends(MovieCastEditor, _super);
+            function MovieCastEditor(container) {
+                _super.call(this, container);
+            }
+            MovieCastEditor.prototype.getColumnsKey = function () { return "MovieDB.MovieCast"; };
+            MovieCastEditor.prototype.getLocalTextPrefix = function () { return MovieDB.MovieCastRow.localTextPrefix; };
+            MovieCastEditor = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], MovieCastEditor);
+            return MovieCastEditor;
+        }(MovieTutorial.Common.GridEditorBase));
+        MovieDB.MovieCastEditor = MovieCastEditor;
+    })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
+})(MovieTutorial || (MovieTutorial = {}));
 var MovieTutorial;
 (function (MovieTutorial) {
     var MovieDB;

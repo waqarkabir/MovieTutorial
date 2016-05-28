@@ -425,6 +425,13 @@ declare namespace MovieTutorial.MovieDB {
     }
 }
 declare namespace MovieTutorial.MovieDB {
+    class MovieCastEditor extends Common.GridEditorBase<MovieCastRow> {
+        protected getColumnsKey(): string;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MovieTutorial.MovieDB {
     class MovieCastGrid extends Serenity.EntityGrid<MovieCastRow, any> {
         protected getColumnsKey(): string;
         protected getDialogType(): typeof MovieCastDialog;
