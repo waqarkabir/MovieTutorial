@@ -78,6 +78,7 @@ namespace MovieTutorial.MovieDB.Entities
             set { Fields.GenreList[this] = value; }
         }
 
+        [MasterDetailRelation(foreignKey: "MovieId")]
         [DisplayName("Cast List"), SetFieldFlags(FieldFlags.ClientSide)]
         public List<MovieCastRow> CastList
         {
