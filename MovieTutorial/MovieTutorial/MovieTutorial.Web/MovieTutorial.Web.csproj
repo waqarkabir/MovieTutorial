@@ -1692,8 +1692,6 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieCastForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\MovieDB\MovieCast\MovieCastGrid.ts" />
-    <TypeScriptCompile Include="Modules\MovieDB\MovieCast\MovieCastDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
