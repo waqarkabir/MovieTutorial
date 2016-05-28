@@ -1680,6 +1680,13 @@ var MovieTutorial;
             MovieCastEditor.prototype.getAddButtonCaption = function () {
                 return "Add";
             };
+            MovieCastEditor.prototype.validateEntity = function (row, id) {
+                if (!_super.prototype.validateEntity.call(this, row, id))
+                    return false;
+                row.PersonFullname = MovieDB.PersonRow.getLookup()
+                    .itemById[row.PersonId].Fullname;
+                return true;
+            };
             MovieCastEditor = __decorate([
                 Serenity.Decorators.registerEditor()
             ], MovieCastEditor);

@@ -430,6 +430,7 @@ declare namespace MovieTutorial.MovieDB {
         protected getLocalTextPrefix(): string;
         constructor(container: JQuery);
         protected getAddButtonCaption(): string;
+        protected validateEntity(row: MovieCastRow, id: number): boolean;
     }
 }
 declare namespace MovieTutorial.MovieDB {
