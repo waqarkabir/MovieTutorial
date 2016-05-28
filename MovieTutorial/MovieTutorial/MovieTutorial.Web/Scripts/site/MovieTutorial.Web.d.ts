@@ -415,6 +415,26 @@ declare namespace MovieTutorial.MovieDB {
     }
 }
 declare namespace MovieTutorial.MovieDB {
+    class MovieCastDialog extends Serenity.EntityDialog<MovieCastRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): any;
+        protected form: MovieCastForm;
+    }
+}
+declare namespace MovieTutorial.MovieDB {
+    class MovieCastGrid extends Serenity.EntityGrid<MovieCastRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MovieCastDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): any;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MovieTutorial.MovieDB {
     class GenreListFormatter implements Slick.Formatter {
         format(ctx: Slick.FormatterContext): string;
     }
@@ -1134,6 +1154,63 @@ declare namespace MovieTutorial.MovieDB {
             const Delete: string;
             const Retrieve: string;
             const List: string;
+        }
+    }
+}
+declare namespace MovieTutorial.MovieDB {
+}
+declare namespace MovieTutorial.MovieDB {
+    class MovieCastForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MovieCastForm {
+        MovieId: Serenity.IntegerEditor;
+        PersonId: Serenity.IntegerEditor;
+        Character: Serenity.StringEditor;
+    }
+}
+declare namespace MovieTutorial.MovieDB {
+    interface MovieCastRow {
+        MovieCastId?: number;
+        MovieId?: number;
+        PersonId?: number;
+        Character?: string;
+        MovieTitle?: string;
+        MovieDescription?: string;
+        MovieStoryline?: string;
+        MovieYear?: number;
+        MovieReleaseDate?: string;
+        MovieRuntime?: number;
+        MovieKind?: number;
+        PersonFirstname?: string;
+        PersonLastname?: string;
+        PersonBirthDate?: string;
+        PersonBirthPlace?: string;
+        PersonGender?: number;
+        PersonHeight?: number;
+    }
+    namespace MovieCastRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const MovieCastId: string;
+            const MovieId: string;
+            const PersonId: string;
+            const Character: string;
+            const MovieTitle: string;
+            const MovieDescription: string;
+            const MovieStoryline: string;
+            const MovieYear: string;
+            const MovieReleaseDate: string;
+            const MovieRuntime: string;
+            const MovieKind: string;
+            const PersonFirstname: string;
+            const PersonLastname: string;
+            const PersonBirthDate: string;
+            const PersonBirthPlace: string;
+            const PersonGender: string;
+            const PersonHeight: string;
         }
     }
 }
