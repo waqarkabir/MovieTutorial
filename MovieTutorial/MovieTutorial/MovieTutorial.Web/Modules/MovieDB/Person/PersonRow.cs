@@ -64,6 +64,14 @@ namespace MovieTutorial.MovieDB.Entities
             set { Fields.Height[this] = value; }
         }
 
+        [DisplayName("Full Name"),
+         Expression("(t0.Firstname + ' ' + t0.Lastname)"), QuickSearch]
+        public String Fullname
+        {
+            get { return Fields.Fullname[this]; }
+            set { Fields.Fullname[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.PersonId; }
@@ -71,7 +79,7 @@ namespace MovieTutorial.MovieDB.Entities
 
         StringField INameRow.NameField
         {
-            get { return Fields.Firstname; }
+            get { return Fields.Fullname; }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();
@@ -86,6 +94,7 @@ namespace MovieTutorial.MovieDB.Entities
             public Int32Field PersonId;
             public StringField Firstname;
             public StringField Lastname;
+            public StringField Fullname;
             public DateTimeField BirthDate;
             public StringField BirthPlace;
             public Int32Field Gender;
