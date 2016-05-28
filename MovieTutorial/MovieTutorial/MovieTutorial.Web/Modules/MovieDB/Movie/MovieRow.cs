@@ -78,6 +78,13 @@ namespace MovieTutorial.MovieDB.Entities
             set { Fields.GenreList[this] = value; }
         }
 
+        [DisplayName("Cast List"), SetFieldFlags(FieldFlags.ClientSide)]
+        public List<MovieCastRow> CastList
+        {
+            get { return Fields.CastList[this]; }
+            set { Fields.CastList[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.MovieId; }
@@ -106,6 +113,7 @@ namespace MovieTutorial.MovieDB.Entities
             public Int32Field Runtime;
             public Int32Field Kind;
             public ListField<Int32> GenreList;
+            public RowListField<MovieCastRow> CastList;
 
             public RowFields()
                 : base("[mov].[Movie]")
