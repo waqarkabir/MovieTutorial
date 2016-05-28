@@ -395,6 +395,11 @@ declare namespace MovieTutorial.Northwind {
     }
 }
 declare namespace MovieTutorial.MovieDB {
+    class GenreListFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace MovieTutorial.MovieDB {
     class MovieDialog extends Serenity.EntityDialog<MovieRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -1118,7 +1123,7 @@ declare namespace MovieTutorial.MovieDB {
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
-        GenreId: Serenity.IntegerEditor;
+        GenreList: Serenity.LookupEditor;
         Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
     }
@@ -1172,6 +1177,7 @@ declare namespace MovieTutorial.MovieDB {
         ReleaseDate?: string;
         Runtime?: number;
         Kind?: MovieKind;
+        GenreList?: number[];
     }
     namespace MovieRow {
         const idProperty: string;
@@ -1186,6 +1192,7 @@ declare namespace MovieTutorial.MovieDB {
             const ReleaseDate: string;
             const Runtime: string;
             const Kind: string;
+            const GenreList: string;
         }
     }
 }

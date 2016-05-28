@@ -1248,6 +1248,7 @@
     <TypeScriptCompile Include="Modules\Membership\Account\ResetPassword\ResetPasswordPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\LoginPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\SignUp\SignUpPanel.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\Movie\GenreListFormatter.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerGrid.ts" />
@@ -1722,6 +1723,9 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\MovieDB.GenreListFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.CustomerEditorAttribute.cs">
