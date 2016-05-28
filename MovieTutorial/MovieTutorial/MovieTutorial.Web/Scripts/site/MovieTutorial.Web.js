@@ -2898,7 +2898,7 @@ var MovieTutorial;
             return MovieCastForm;
         }(Serenity.PrefixedContext));
         MovieDB.MovieCastForm = MovieCastForm;
-        [['MovieId', function () { return Serenity.IntegerEditor; }], ['PersonId', function () { return Serenity.IntegerEditor; }], ['Character', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MovieCastForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['PersonId', function () { return Serenity.LookupEditor; }], ['Character', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MovieCastForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));
 var MovieTutorial;
@@ -2913,7 +2913,7 @@ var MovieTutorial;
             var Fields;
             (function (Fields) {
             })(Fields = MovieCastRow.Fields || (MovieCastRow.Fields = {}));
-            ['MovieCastId', 'MovieId', 'PersonId', 'Character', 'MovieTitle', 'MovieDescription', 'MovieStoryline', 'MovieYear', 'MovieReleaseDate', 'MovieRuntime', 'MovieKind', 'PersonFirstname', 'PersonLastname', 'PersonBirthDate', 'PersonBirthPlace', 'PersonGender', 'PersonHeight'].forEach(function (x) { return Fields[x] = x; });
+            ['MovieCastId', 'MovieId', 'PersonId', 'Character', 'MovieTitle', 'MovieDescription', 'MovieStoryline', 'MovieYear', 'MovieReleaseDate', 'MovieRuntime', 'MovieKind', 'PersonFirstname', 'PersonLastname', 'PersonFullname', 'PersonBirthDate', 'PersonBirthPlace', 'PersonGender', 'PersonHeight'].forEach(function (x) { return Fields[x] = x; });
         })(MovieCastRow = MovieDB.MovieCastRow || (MovieDB.MovieCastRow = {}));
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));

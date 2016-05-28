@@ -1162,8 +1162,7 @@ declare namespace MovieTutorial.MovieDB {
         static formKey: string;
     }
     interface MovieCastForm {
-        MovieId: Serenity.IntegerEditor;
-        PersonId: Serenity.IntegerEditor;
+        PersonId: Serenity.LookupEditor;
         Character: Serenity.StringEditor;
     }
 }
@@ -1182,6 +1181,7 @@ declare namespace MovieTutorial.MovieDB {
         MovieKind?: number;
         PersonFirstname?: string;
         PersonLastname?: string;
+        PersonFullname?: string;
         PersonBirthDate?: string;
         PersonBirthPlace?: string;
         PersonGender?: number;
@@ -1205,6 +1205,7 @@ declare namespace MovieTutorial.MovieDB {
             const MovieKind: string;
             const PersonFirstname: string;
             const PersonLastname: string;
+            const PersonFullname: string;
             const PersonBirthDate: string;
             const PersonBirthPlace: string;
             const PersonGender: string;

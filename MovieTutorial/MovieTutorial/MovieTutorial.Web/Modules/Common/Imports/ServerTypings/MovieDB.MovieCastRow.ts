@@ -13,6 +13,7 @@
         MovieKind?: number;
         PersonFirstname?: string;
         PersonLastname?: string;
+        PersonFullname?: string;
         PersonBirthDate?: string;
         PersonBirthPlace?: string;
         PersonGender?: number;
@@ -38,13 +39,14 @@
             export declare const MovieKind: string;
             export declare const PersonFirstname: string;
             export declare const PersonLastname: string;
+            export declare const PersonFullname: string;
             export declare const PersonBirthDate: string;
             export declare const PersonBirthPlace: string;
             export declare const PersonGender: string;
             export declare const PersonHeight: string;
         }
 
-        ['MovieCastId', 'MovieId', 'PersonId', 'Character', 'MovieTitle', 'MovieDescription', 'MovieStoryline', 'MovieYear', 'MovieReleaseDate', 'MovieRuntime', 'MovieKind', 'PersonFirstname', 'PersonLastname', 'PersonBirthDate', 'PersonBirthPlace', 'PersonGender', 'PersonHeight'].forEach(x => (<any>Fields)[x] = x);
+        ['MovieCastId', 'MovieId', 'PersonId', 'Character', 'MovieTitle', 'MovieDescription', 'MovieStoryline', 'MovieYear', 'MovieReleaseDate', 'MovieRuntime', 'MovieKind', 'PersonFirstname', 'PersonLastname', 'PersonFullname', 'PersonBirthDate', 'PersonBirthPlace', 'PersonGender', 'PersonHeight'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 
