@@ -1,15 +1,12 @@
 
 namespace MovieTutorial.MovieDB.Entities
 {
-    using Newtonsoft.Json;
-    using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.IO;
 
     [ConnectionKey("Default"), DisplayName("Movies"), InstanceName("Movie"), TwoLevelCached]
     [ReadPermission("Administration")]
@@ -108,7 +105,7 @@ namespace MovieTutorial.MovieDB.Entities
             public DateTimeField ReleaseDate;
             public Int32Field Runtime;
             public Int32Field Kind;
-            public CustomClassField<List<Int32>> GenreList;
+            public ListField<Int32> GenreList;
 
             public RowFields()
                 : base("[mov].[Movie]")
