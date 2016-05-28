@@ -10,7 +10,6 @@ namespace MovieTutorial.MovieDB.Forms
     public class MovieCastForm
     {
         [LookupEditor(typeof(Entities.PersonRow))]
-        [DisplayName("Actor/Actress")]
         public Int32 PersonId { get; set; }
         public String Character { get; set; }
     }

@@ -10,7 +10,7 @@ namespace MovieTutorial.MovieDB.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), DisplayName("MovieCast"), InstanceName("MovieCast"), TwoLevelCached]
+    [ConnectionKey("Default"), DisplayName("Movie Casts"), InstanceName("Cast"), TwoLevelCached]
     [ReadPermission("Administration")]
     [ModifyPermission("Administration")]
     public sealed class MovieCastRow : Row, IIdRow, INameRow
@@ -29,7 +29,9 @@ namespace MovieTutorial.MovieDB.Entities
             set { Fields.MovieId[this] = value; }
         }
 
-        [DisplayName("Person"), NotNull, ForeignKey("[mov].[Person]", "PersonId"), LeftJoin("jPerson"), TextualField("PersonFirstname")]
+        [DisplayName("Actor/Actress"), NotNull, ForeignKey("[mov].[Person]", "PersonId")]
+        [LeftJoin("jPerson"), TextualField("PersonFirstname")]
+        [LookupEditor(typeof(PersonRow))]
         public Int32? PersonId
         {
             get { return Fields.PersonId[this]; }
