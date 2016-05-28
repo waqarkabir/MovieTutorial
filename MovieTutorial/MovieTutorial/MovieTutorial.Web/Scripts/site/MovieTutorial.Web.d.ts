@@ -1259,6 +1259,7 @@ declare namespace MovieTutorial.MovieDB {
         PersonId?: number;
         Firstname?: string;
         Lastname?: string;
+        Fullname?: string;
         BirthDate?: string;
         BirthPlace?: string;
         Gender?: Gender;
@@ -1272,6 +1273,7 @@ declare namespace MovieTutorial.MovieDB {
             const PersonId: string;
             const Firstname: string;
             const Lastname: string;
+            const Fullname: string;
             const BirthDate: string;
             const BirthPlace: string;
             const Gender: string;

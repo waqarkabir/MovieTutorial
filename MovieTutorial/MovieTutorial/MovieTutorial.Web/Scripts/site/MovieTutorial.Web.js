@@ -2939,12 +2939,12 @@ var MovieTutorial;
         var PersonRow;
         (function (PersonRow) {
             PersonRow.idProperty = 'PersonId';
-            PersonRow.nameProperty = 'Firstname';
+            PersonRow.nameProperty = 'Fullname';
             PersonRow.localTextPrefix = 'MovieDB.Person';
             var Fields;
             (function (Fields) {
             })(Fields = PersonRow.Fields || (PersonRow.Fields = {}));
-            ['PersonId', 'Firstname', 'Lastname', 'BirthDate', 'BirthPlace', 'Gender', 'Height'].forEach(function (x) { return Fields[x] = x; });
+            ['PersonId', 'Firstname', 'Lastname', 'Fullname', 'BirthDate', 'BirthPlace', 'Gender', 'Height'].forEach(function (x) { return Fields[x] = x; });
         })(PersonRow = MovieDB.PersonRow || (MovieDB.PersonRow = {}));
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));

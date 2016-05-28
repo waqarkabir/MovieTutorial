@@ -3,6 +3,7 @@
         PersonId?: number;
         Firstname?: string;
         Lastname?: string;
+        Fullname?: string;
         BirthDate?: string;
         BirthPlace?: string;
         Gender?: Gender;
@@ -11,20 +12,21 @@
 
     export namespace PersonRow {
         export const idProperty = 'PersonId';
-        export const nameProperty = 'Firstname';
+        export const nameProperty = 'Fullname';
         export const localTextPrefix = 'MovieDB.Person';
 
         export namespace Fields {
             export declare const PersonId: string;
             export declare const Firstname: string;
             export declare const Lastname: string;
+            export declare const Fullname: string;
             export declare const BirthDate: string;
             export declare const BirthPlace: string;
             export declare const Gender: string;
             export declare const Height: string;
         }
 
-        ['PersonId', 'Firstname', 'Lastname', 'BirthDate', 'BirthPlace', 'Gender', 'Height'].forEach(x => (<any>Fields)[x] = x);
+        ['PersonId', 'Firstname', 'Lastname', 'Fullname', 'BirthDate', 'BirthPlace', 'Gender', 'Height'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 
