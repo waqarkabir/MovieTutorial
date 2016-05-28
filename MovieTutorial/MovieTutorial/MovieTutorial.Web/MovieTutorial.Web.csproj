@@ -1229,6 +1229,9 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceUpdateRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.Gender.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.GenreColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1236,6 +1239,9 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieKind.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
@@ -1665,9 +1671,15 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <Content Include="Modules\MovieDB\Person\PersonIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonRow.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonService.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonForm.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\MovieDB\Person\PersonGrid.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\Person\PersonDialog.ts" />
   </ItemGroup>
@@ -1811,6 +1823,7 @@
     <Compile Include="Modules\Membership\Account\SignUp\SignUpRequest.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRow.cs" />
     <Compile Include="Modules\MovieDB\Movie\MovieKind.cs" />
+    <Compile Include="Modules\MovieDB\Person\Gender.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangEndpoint.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRepository.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRow.cs" />

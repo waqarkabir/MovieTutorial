@@ -1,12 +1,11 @@
-﻿
-namespace MovieTutorial.MovieDB {
+﻿namespace MovieTutorial.MovieDB {
     export interface PersonRow {
         PersonId?: number;
         Firstname?: string;
         Lastname?: string;
         BirthDate?: string;
         BirthPlace?: string;
-        Gender?: number;
+        Gender?: Gender;
         Height?: number;
     }
 
@@ -16,13 +15,13 @@ namespace MovieTutorial.MovieDB {
         export const localTextPrefix = 'MovieDB.Person';
 
         export namespace Fields {
-            export declare const PersonId;
-            export declare const Firstname;
-            export declare const Lastname;
-            export declare const BirthDate;
-            export declare const BirthPlace;
-            export declare const Gender;
-            export declare const Height;
+            export declare const PersonId: string;
+            export declare const Firstname: string;
+            export declare const Lastname: string;
+            export declare const BirthDate: string;
+            export declare const BirthPlace: string;
+            export declare const Gender: string;
+            export declare const Height: string;
         }
 
         ['PersonId', 'Firstname', 'Lastname', 'BirthDate', 'BirthPlace', 'Gender', 'Height'].forEach(x => (<any>Fields)[x] = x);

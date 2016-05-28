@@ -51,10 +51,10 @@ namespace MovieTutorial.MovieDB.Entities
         }
 
         [DisplayName("Gender")]
-        public Int32? Gender
+        public Gender? Gender
         {
-            get { return Fields.Gender[this]; }
-            set { Fields.Gender[this] = value; }
+            get { return (Gender?)Fields.Gender[this]; }
+            set { Fields.Gender[this] = (Int32?)value; }
         }
 
         [DisplayName("Height")]

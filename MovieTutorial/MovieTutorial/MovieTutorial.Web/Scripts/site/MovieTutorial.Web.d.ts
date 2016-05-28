@@ -1088,6 +1088,12 @@ declare namespace MovieTutorial.Membership {
     }
 }
 declare namespace MovieTutorial.MovieDB {
+    enum Gender {
+        Male = 1,
+        Female = 2,
+    }
+}
+declare namespace MovieTutorial.MovieDB {
 }
 declare namespace MovieTutorial.MovieDB {
     class GenreForm extends Serenity.PrefixedContext {
@@ -1234,6 +1240,8 @@ declare namespace MovieTutorial.MovieDB {
     }
 }
 declare namespace MovieTutorial.MovieDB {
+}
+declare namespace MovieTutorial.MovieDB {
     class PersonForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -1242,7 +1250,7 @@ declare namespace MovieTutorial.MovieDB {
         Lastname: Serenity.StringEditor;
         BirthDate: Serenity.DateEditor;
         BirthPlace: Serenity.StringEditor;
-        Gender: Serenity.IntegerEditor;
+        Gender: Serenity.EnumEditor;
         Height: Serenity.IntegerEditor;
     }
 }
@@ -1253,7 +1261,7 @@ declare namespace MovieTutorial.MovieDB {
         Lastname?: string;
         BirthDate?: string;
         BirthPlace?: string;
-        Gender?: number;
+        Gender?: Gender;
         Height?: number;
     }
     namespace PersonRow {
@@ -1261,24 +1269,24 @@ declare namespace MovieTutorial.MovieDB {
         const nameProperty: string;
         const localTextPrefix: string;
         namespace Fields {
-            const PersonId: any;
-            const Firstname: any;
-            const Lastname: any;
-            const BirthDate: any;
-            const BirthPlace: any;
-            const Gender: any;
-            const Height: any;
+            const PersonId: string;
+            const Firstname: string;
+            const Lastname: string;
+            const BirthDate: string;
+            const BirthPlace: string;
+            const Gender: string;
+            const Height: string;
         }
     }
 }
 declare namespace MovieTutorial.MovieDB {
     namespace PersonService {
         const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<PersonRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<PersonRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PersonRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PersonRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Create(request: Serenity.SaveRequest<PersonRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<PersonRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PersonRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PersonRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;

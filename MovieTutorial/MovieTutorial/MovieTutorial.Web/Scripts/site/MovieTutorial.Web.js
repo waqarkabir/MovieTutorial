@@ -2777,6 +2777,18 @@ var MovieTutorial;
 (function (MovieTutorial) {
     var MovieDB;
     (function (MovieDB) {
+        (function (Gender) {
+            Gender[Gender["Male"] = 1] = "Male";
+            Gender[Gender["Female"] = 2] = "Female";
+        })(MovieDB.Gender || (MovieDB.Gender = {}));
+        var Gender = MovieDB.Gender;
+        Serenity.Decorators.registerEnum(Gender, 'MovieDB.Gender');
+    })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
+})(MovieTutorial || (MovieTutorial = {}));
+var MovieTutorial;
+(function (MovieTutorial) {
+    var MovieDB;
+    (function (MovieDB) {
         var GenreForm = (function (_super) {
             __extends(GenreForm, _super);
             function GenreForm() {
@@ -2917,7 +2929,7 @@ var MovieTutorial;
             return PersonForm;
         }(Serenity.PrefixedContext));
         MovieDB.PersonForm = PersonForm;
-        [['Firstname', function () { return Serenity.StringEditor; }], ['Lastname', function () { return Serenity.StringEditor; }], ['BirthDate', function () { return Serenity.DateEditor; }], ['BirthPlace', function () { return Serenity.StringEditor; }], ['Gender', function () { return Serenity.IntegerEditor; }], ['Height', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(PersonForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Firstname', function () { return Serenity.StringEditor; }], ['Lastname', function () { return Serenity.StringEditor; }], ['BirthDate', function () { return Serenity.DateEditor; }], ['BirthPlace', function () { return Serenity.StringEditor; }], ['Gender', function () { return Serenity.EnumEditor; }], ['Height', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(PersonForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));
 var MovieTutorial;
