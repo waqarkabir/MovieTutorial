@@ -415,10 +415,21 @@ declare namespace MovieTutorial.MovieDB {
     }
 }
 declare namespace MovieTutorial.MovieDB {
+    class MovieCastEditDialog extends Common.GridEditorDialog<MovieCastRow> {
+        protected getFormKey(): string;
+        protected getNameProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected form: MovieCastForm;
+        constructor();
+    }
+}
+declare namespace MovieTutorial.MovieDB {
     class MovieCastEditor extends Common.GridEditorBase<MovieCastRow> {
         protected getColumnsKey(): string;
+        protected getDialogType(): typeof MovieCastEditDialog;
         protected getLocalTextPrefix(): string;
         constructor(container: JQuery);
+        protected getAddButtonCaption(): string;
     }
 }
 declare namespace MovieTutorial.MovieDB {

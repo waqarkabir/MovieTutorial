@@ -1257,6 +1257,7 @@
     <TypeScriptCompile Include="Modules\Membership\Account\ResetPassword\ResetPasswordPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\LoginPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\SignUp\SignUpPanel.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\MovieCast\MovieCastEditDialog.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\MovieCast\MovieCastEditor.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\Movie\GenreListFormatter.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryDialog.ts" />

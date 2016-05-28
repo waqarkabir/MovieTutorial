@@ -1642,6 +1642,28 @@ var MovieTutorial;
         MovieDB.PersonGrid = PersonGrid;
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var MovieTutorial;
+(function (MovieTutorial) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieCastEditDialog = (function (_super) {
+            __extends(MovieCastEditDialog, _super);
+            function MovieCastEditDialog() {
+                _super.call(this);
+                this.form = new MovieDB.MovieCastForm(this.idPrefix);
+            }
+            MovieCastEditDialog.prototype.getFormKey = function () { return MovieDB.MovieCastForm.formKey; };
+            MovieCastEditDialog.prototype.getNameProperty = function () { return MovieDB.MovieCastRow.nameProperty; };
+            MovieCastEditDialog.prototype.getLocalTextPrefix = function () { return MovieDB.MovieCastRow.localTextPrefix; };
+            MovieCastEditDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MovieCastEditDialog);
+            return MovieCastEditDialog;
+        }(MovieTutorial.Common.GridEditorDialog));
+        MovieDB.MovieCastEditDialog = MovieCastEditDialog;
+    })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
+})(MovieTutorial || (MovieTutorial = {}));
 /// <reference path="../../Common/Helpers/GridEditorBase.ts" />
 var MovieTutorial;
 (function (MovieTutorial) {
@@ -1653,7 +1675,11 @@ var MovieTutorial;
                 _super.call(this, container);
             }
             MovieCastEditor.prototype.getColumnsKey = function () { return "MovieDB.MovieCast"; };
+            MovieCastEditor.prototype.getDialogType = function () { return MovieDB.MovieCastEditDialog; };
             MovieCastEditor.prototype.getLocalTextPrefix = function () { return MovieDB.MovieCastRow.localTextPrefix; };
+            MovieCastEditor.prototype.getAddButtonCaption = function () {
+                return "Add";
+            };
             MovieCastEditor = __decorate([
                 Serenity.Decorators.registerEditor()
             ], MovieCastEditor);
