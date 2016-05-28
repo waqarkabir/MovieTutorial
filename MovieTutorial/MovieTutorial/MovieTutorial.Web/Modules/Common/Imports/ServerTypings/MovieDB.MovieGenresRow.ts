@@ -1,5 +1,4 @@
-﻿
-namespace MovieTutorial.MovieDB {
+﻿namespace MovieTutorial.MovieDB {
     export interface MovieGenresRow {
         MovieGenreId?: number;
         MovieId?: number;
@@ -19,9 +18,9 @@ namespace MovieTutorial.MovieDB {
         export const localTextPrefix = 'MovieDB.MovieGenres';
 
         export namespace Fields {
-            export declare const MovieGenreId;
-            export declare const MovieId;
-            export declare const GenreId;
+            export declare const MovieGenreId: string;
+            export declare const MovieId: string;
+            export declare const GenreId: string;
             export declare const MovieTitle: string;
             export declare const MovieDescription: string;
             export declare const MovieStoryline: string;

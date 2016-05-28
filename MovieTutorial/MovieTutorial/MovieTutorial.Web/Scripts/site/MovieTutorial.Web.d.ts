@@ -395,25 +395,6 @@ declare namespace MovieTutorial.Northwind {
     }
 }
 declare namespace MovieTutorial.MovieDB {
-    class MovieGenresDialog extends Serenity.EntityDialog<MovieGenresRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected form: MovieGenresForm;
-    }
-}
-declare namespace MovieTutorial.MovieDB {
-    class MovieGenresGrid extends Serenity.EntityGrid<MovieGenresRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MovieGenresDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace MovieTutorial.MovieDB {
     class MovieDialog extends Serenity.EntityDialog<MovieRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -1137,18 +1118,9 @@ declare namespace MovieTutorial.MovieDB {
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
-        GenreId: Serenity.LookupEditor;
+        GenreId: Serenity.IntegerEditor;
         Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
-    }
-}
-declare namespace MovieTutorial.MovieDB {
-    class MovieGenresForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface MovieGenresForm {
-        MovieId: Serenity.IntegerEditor;
-        GenreId: Serenity.IntegerEditor;
     }
 }
 declare namespace MovieTutorial.MovieDB {
@@ -1169,9 +1141,9 @@ declare namespace MovieTutorial.MovieDB {
         const idProperty: string;
         const localTextPrefix: string;
         namespace Fields {
-            const MovieGenreId: any;
-            const MovieId: any;
-            const GenreId: any;
+            const MovieGenreId: string;
+            const MovieId: string;
+            const GenreId: string;
             const MovieTitle: string;
             const MovieDescription: string;
             const MovieStoryline: string;
@@ -1180,23 +1152,6 @@ declare namespace MovieTutorial.MovieDB {
             const MovieRuntime: string;
             const MovieKind: string;
             const GenreName: string;
-        }
-    }
-}
-declare namespace MovieTutorial.MovieDB {
-    namespace MovieGenresService {
-        const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<MovieGenresRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<MovieGenresRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MovieGenresRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MovieGenresRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
         }
     }
 }
@@ -1217,8 +1172,6 @@ declare namespace MovieTutorial.MovieDB {
         ReleaseDate?: string;
         Runtime?: number;
         Kind?: MovieKind;
-        GenreId?: number;
-        GenreName?: string;
     }
     namespace MovieRow {
         const idProperty: string;
@@ -1233,8 +1186,6 @@ declare namespace MovieTutorial.MovieDB {
             const ReleaseDate: string;
             const Runtime: string;
             const Kind: string;
-            const GenreId: string;
-            const GenreName: string;
         }
     }
 }
