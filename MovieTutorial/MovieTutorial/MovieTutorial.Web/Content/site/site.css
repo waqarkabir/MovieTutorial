@@ -7751,6 +7751,9 @@ section.content > .s-DataGrid {
 .s-MovieDB-PersonDialog .caption {
   width: 150px;
 }
+.s-MovieDB-PersonDialog .s-PersonMovieGrid > .grid-container {
+  height: 287px;
+}
 .s-MovieDB-MovieCastEditDialog > .size {
   width: 450px;
 }
