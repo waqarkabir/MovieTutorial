@@ -11,5 +11,16 @@ namespace MovieTutorial.MovieDB {
         protected getService() { return PersonService.baseUrl; }
 
         protected form = new PersonForm(this.idPrefix);
+
+        private moviesGrid: PersonMovieGrid;
+
+        constructor() {
+            super();
+
+            this.moviesGrid = new PersonMovieGrid(this.byId("MoviesGrid"));
+            this.tabs.on('tabsactivate', (e, i) => {
+                this.arrange();
+            });
+        }
     }
 }

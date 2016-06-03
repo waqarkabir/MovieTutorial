@@ -402,12 +402,23 @@ declare namespace MovieTutorial.MovieDB {
         protected getNameProperty(): string;
         protected getService(): string;
         protected form: PersonForm;
+        private moviesGrid;
+        constructor();
     }
 }
 declare namespace MovieTutorial.MovieDB {
     class PersonGrid extends Serenity.EntityGrid<PersonRow, any> {
         protected getColumnsKey(): string;
         protected getDialogType(): typeof PersonDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MovieTutorial.MovieDB {
+    class PersonMovieGrid extends Serenity.EntityGrid<MovieCastRow, any> {
+        protected getColumnsKey(): string;
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
         protected getService(): string;
@@ -1215,6 +1226,23 @@ declare namespace MovieTutorial.MovieDB {
     }
 }
 declare namespace MovieTutorial.MovieDB {
+    namespace MovieCastService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MovieCastRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MovieCastRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MovieCastRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MovieCastRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace MovieTutorial.MovieDB {
 }
 declare namespace MovieTutorial.MovieDB {
     class MovieForm extends Serenity.PrefixedContext {
@@ -1282,6 +1310,7 @@ declare namespace MovieTutorial.MovieDB {
         Runtime?: number;
         Kind?: MovieKind;
         GenreList?: number[];
+        CastList?: MovieCastRow[];
     }
     namespace MovieRow {
         const idProperty: string;
@@ -1297,6 +1326,7 @@ declare namespace MovieTutorial.MovieDB {
             const Runtime: string;
             const Kind: string;
             const GenreList: string;
+            const CastList: string;
         }
     }
 }
@@ -1331,6 +1361,8 @@ declare namespace MovieTutorial.MovieDB {
         Gender: Serenity.EnumEditor;
         Height: Serenity.IntegerEditor;
     }
+}
+declare namespace MovieTutorial.MovieDB {
 }
 declare namespace MovieTutorial.MovieDB {
     interface PersonRow {
