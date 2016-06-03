@@ -7746,13 +7746,14 @@ section.content > .s-DataGrid {
   width: 150px;
 }
 .s-MovieDB-PersonDialog > .size {
-  width: 650px;
+  width: 700px;
+  height: 600px;
 }
 .s-MovieDB-PersonDialog .caption {
   width: 150px;
 }
 .s-MovieDB-PersonDialog .s-PersonMovieGrid > .grid-container {
-  height: 287px;
+  height: 500px;
 }
 .s-MovieDB-MovieCastEditDialog > .size {
   width: 450px;

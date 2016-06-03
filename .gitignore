@@ -10,3 +10,4 @@ obj/
 **/*.Web/bin
 **/*.Script/bin
 **/*.Test/bin
+MovieTutorial/MovieTutorial/MovieTutorial.Web/App_Data/upload/*
