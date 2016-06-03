@@ -22,5 +22,11 @@ namespace MovieTutorial.MovieDB {
                 this.arrange();
             });
         }
+
+        protected afterLoadEntity() {
+            super.afterLoadEntity();
+
+            this.moviesGrid.personID = this.entityId;
+        }
     }
 }

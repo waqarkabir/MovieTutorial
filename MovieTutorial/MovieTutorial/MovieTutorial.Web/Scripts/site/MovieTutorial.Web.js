@@ -4719,6 +4719,10 @@ var MovieTutorial;
             PersonDialog.prototype.getLocalTextPrefix = function () { return MovieDB.PersonRow.localTextPrefix; };
             PersonDialog.prototype.getNameProperty = function () { return MovieDB.PersonRow.nameProperty; };
             PersonDialog.prototype.getService = function () { return MovieDB.PersonService.baseUrl; };
+            PersonDialog.prototype.afterLoadEntity = function () {
+                _super.prototype.afterLoadEntity.call(this);
+                this.moviesGrid.personID = this.entityId;
+            };
             PersonDialog = __decorate([
                 Serenity.Decorators.registerClass(),
                 Serenity.Decorators.responsive()

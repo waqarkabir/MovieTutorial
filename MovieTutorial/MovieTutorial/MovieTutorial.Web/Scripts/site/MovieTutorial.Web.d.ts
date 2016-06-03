@@ -2646,6 +2646,7 @@ declare namespace MovieTutorial.MovieDB {
         protected form: PersonForm;
         private moviesGrid;
         constructor();
+        protected afterLoadEntity(): void;
     }
 }
 declare namespace MovieTutorial.MovieDB {
