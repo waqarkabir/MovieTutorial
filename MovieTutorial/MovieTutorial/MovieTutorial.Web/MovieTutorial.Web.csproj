@@ -1260,6 +1260,7 @@
     <TypeScriptCompile Include="Modules\MovieDB\MovieCast\MovieCastEditDialog.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\MovieCast\MovieCastEditor.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\Movie\GenreListFormatter.ts" />
+    <Content Include="Modules\MovieDB\Person\MovieDB.PersonDialog.Template.html" />
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerGrid.ts" />
