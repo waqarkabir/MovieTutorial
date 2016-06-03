@@ -9,6 +9,7 @@ using MovieDB = MovieTutorial.MovieDB.Pages;
 [assembly: NavigationMenu(2000, "Movie Database", icon: "icon-film")]
 [assembly: NavigationLink(2100, "Movie Database/Movies", typeof(MovieDB.MovieController), icon: "icon-camrecorder")]
 [assembly: NavigationLink(2200, "Movie Database/Genres", typeof(MovieDB.GenreController), icon: "icon-pin")]
+[assembly: NavigationLink(2300, "Movie Database/Actors-Actresses", typeof(MovieDB.PersonController), icon: "icon-user")]
 
 [assembly: NavigationMenu(7000, "Northwind", icon: "icon-anchor")]
 [assembly: NavigationLink(7100, "Northwind/Customers", typeof(Northwind.CustomerController), icon: "icon-wallet")]
