@@ -41,6 +41,27 @@ namespace MovieTutorial.MovieDB.Repositories
         private class MySaveHandler : SaveRequestHandler<MyRow> { }
         private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
-        private class MyListHandler : ListRequestHandler<MyRow, MovieListRequest> { }
+
+        private class MyListHandler : ListRequestHandler<MyRow, MovieListRequest>
+        {
+            protected override void ApplyFilters(SqlQuery query)
+            {
+                base.ApplyFilters(query);
+
+                if (!Request.Genres.IsEmptyOrNull())
+                {
+                    var mg = Entities.MovieGenresRow.Fields.As("mg");
+
+                    query.Where(Criteria.Exists(
+                        query.SubQuery()
+                            .From(mg)
+                            .Select("1")
+                            .Where(
+                                mg.MovieId == fld.MovieId &&
+                                mg.GenreId.In(Request.Genres))
+                            .ToString()));
+                }
+            }
+        }
     }
 }
