@@ -33,7 +33,7 @@ namespace MovieTutorial.MovieDB.Repositories
             return new MyRetrieveHandler().Process(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, MovieListRequest request)
         {
             return new MyListHandler().Process(connection, request);
         }
@@ -41,6 +41,6 @@ namespace MovieTutorial.MovieDB.Repositories
         private class MySaveHandler : SaveRequestHandler<MyRow> { }
         private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
-        private class MyListHandler : ListRequestHandler<MyRow> { }
+        private class MyListHandler : ListRequestHandler<MyRow, MovieListRequest> { }
     }
 }

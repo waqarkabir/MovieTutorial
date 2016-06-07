@@ -1696,6 +1696,7 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRow.cs" />
     <Compile Include="Modules\MovieDB\MovieCast\MovieCastEndpoint.cs" />
     <Compile Include="Modules\MovieDB\Movie\MovieKind.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieListRequest.cs" />
     <Compile Include="Modules\MovieDB\Person\Gender.cs" />
     <Compile Include="Modules\MovieDB\Person\PersonMovieColumns.cs" />
     <Compile Include="Modules\Texts.cs" />
