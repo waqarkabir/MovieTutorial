@@ -401,6 +401,19 @@ var MovieTutorial;
                     { name: fld.Year, title: txt(fld.Year) }
                 ];
             };
+            MovieGrid.prototype.getQuickFilters = function () {
+                var items = _super.prototype.getQuickFilters.call(this);
+                var castListFilter = Q.first(items, function (x) {
+                    return x.field == MovieDB.MovieRow.Fields.GenreList;
+                });
+                castListFilter.handler = function (h) {
+                    var request = h.request;
+                    var values = h.widget.values;
+                    request.Genres = values.map(function (x) { return parseInt(x, 10); });
+                    h.handled = true;
+                };
+                return items;
+            };
             MovieGrid = __decorate([
                 Serenity.Decorators.registerClass()
             ], MovieGrid);
