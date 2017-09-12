@@ -70,7 +70,7 @@ namespace MovieTutorial.MovieDB.Entities
         }
 
         [DisplayName("Genres")]
-        [LookupEditor(typeof(GenreRow), Multiple = true), ClientSide]
+        [LookupEditor(typeof(GenreRow), Multiple = true), NotMapped]
         [LinkingSetRelation(typeof(MovieGenresRow), "MovieId", "GenreId")]
         public List<Int32> GenreList
         {
@@ -79,7 +79,7 @@ namespace MovieTutorial.MovieDB.Entities
         }
 
         [MasterDetailRelation(foreignKey: "MovieId", IncludeColumns = "PersonFullname")]
-        [DisplayName("Cast List"), SetFieldFlags(FieldFlags.ClientSide)]
+        [DisplayName("Cast List"), NotMapped]
         public List<MovieCastRow> CastList
         {
             get { return Fields.CastList[this]; }

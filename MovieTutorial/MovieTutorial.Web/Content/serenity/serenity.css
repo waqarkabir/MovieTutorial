@@ -10,7 +10,8 @@
 }
 .deleted a,
 .deleted,
-.deleted td {
+.deleted td,
+.deleted div {
   text-decoration: line-through !important;
   color: #999 !important;
 }
@@ -22,7 +23,8 @@
 }
 .inactive a,
 .inactive,
-.inactive td {
+.inactive td,
+.inactive div {
   color: #999 !important;
 }
 .ui-widget-overlay {
@@ -913,8 +915,6 @@ button.ui-state-hover .ui-button-text {
 .s-ColumnPickerDialog .column-list {
   flex: 1 1 50%;
   margin: 6px;
-  display: flex;
-  flex-direction: column;
 }
 .s-ColumnPickerDialog .column-list ul {
   padding-left: 0;
@@ -1374,12 +1374,12 @@ body.mobile-device.modal-dialog-open {
 .ui-dialog.mobile-layout .ui-dialog-titlebar-close,
 .ui-dialog.mobile-layout .ui-dialog-titlebar-close:hover {
   border: none;
-  left: .3em;
-  width: 28px;
-  height: 28px;
+  left: 0;
+  width: 44px;
+  height: 36px;
   background-color: transparent;
   background-image: url(images/back-arrow-black.png);
-  top: 45%;
+  top: 30%;
 }
 .ui-dialog.mobile-layout .ui-dialog-titlebar-buttonpane {
   display: none;
@@ -1426,14 +1426,14 @@ body.mobile-device.modal-dialog-open {
   color: #48c;
 }
 .file-item .filename {
-  height: 16px;
-  line-height: 16px;
+  position: relative;
+  white-space: nowrap;
+  padding-right: 16px;
   display: block;
-  width: 128px;
   text-overflow: ellipsis;
   overflow: hidden;
   text-align: center;
-  font-size: 9px;
+  font-size: 11px;
 }
 .file-item.file-binary .thumb {
   background-image: url(images/thumb-file-72.png);
@@ -1459,6 +1459,11 @@ body.mobile-device.modal-dialog-open {
   border-radius: 0px;
   padding: 4px;
   background-color: #eee;
+  margin-bottom: 0;
+}
+.s-ImageUploadEditor .s-Toolbar .tool-button,
+.s-MultipleImageUploadEditor .s-Toolbar .tool-button {
+  margin-bottom: 0;
 }
 .s-MultipleImageUploadEditor li {
   float: left;
@@ -1466,8 +1471,8 @@ body.mobile-device.modal-dialog-open {
 }
 .s-MultipleImageUploadEditor li .delete {
   display: block;
-  position: relative;
-  top: -16px;
+  position: absolute;
+  top: 2px;
   right: 0px;
   width: 16px;
   height: 16px;
@@ -1967,6 +1972,14 @@ body.mobile-device.modal-dialog-open {
 .emaildomain.disabled {
   background-color: #f0f0f7;
 }
+.s-RadioButtonEditor label {
+  margin-right: 8px;
+}
+.s-RadioButtonEditor input {
+  margin-right: 2px;
+  position: relative;
+  top: 2px;
+}
 .inplace-button {
   display: inline-block;
   height: 26px;
@@ -1990,7 +2003,6 @@ body.mobile-device.modal-dialog-open {
   height: 22px;
   background-repeat: no-repeat;
   background-position: center 2px;
-  cursor: pointer;
 }
 .inplace-create b {
   background-image: url(../serenity/images/star-pencil.png);
@@ -2093,7 +2105,6 @@ a.s-LinkDropDown input {
 }
 .s-PropertyGrid .categories {
   overflow-y: auto;
-  height: 240px;
 }
 .s-PropertyGrid .category-title {
   border-bottom: 1px solid #6090c0;
@@ -2101,6 +2112,20 @@ a.s-LinkDropDown input {
   padding: 3px 6px;
   margin: 8px 8px 4px 0px;
   clear: both;
+}
+.s-PropertyGrid .category.collapsible .category-title {
+  cursor: pointer;
+}
+.s-PropertyGrid .category.collapsed .field {
+  visibility: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+.s-PropertyGrid .category-title i.fa {
+  float: right;
+  font-size: 14px;
 }
 .s-PropertyGrid .category-title a {
   color: #6090c0;
@@ -2146,8 +2171,20 @@ a.s-LinkDropDown input {
   padding-bottom: 4px;
   margin-right: 6px;
 }
-.quick-filter-item .s-DateEditor {
+.quick-filter-item .s-DateEditor,
+.quick-filter-item .s-DateTimeEditor.dateQ {
   width: 85px;
+}
+.quick-filter-item .s-DateTimeEditor.time {
+  position: relative;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  top: 3px;
+  margin-right: 6px;
+  border: 1px solid #ccc;
+}
+.quick-filter-item .inplace-now {
+  display: none;
 }
 .quick-filter-item input.hasDatepicker {
   margin-right: 1px;
@@ -2196,8 +2233,6 @@ a.s-LinkDropDown input {
   background: url(images/sprites.png) no-repeat -214px -90px;
 }
 .s-QuickSearchBar .s-QuickSearchInput {
-  line-height: 23px;
-  height: 28px;
   padding: 0 2px 0 4px;
   border-radius: 0 4px 4px 0;
   background-clip: padding-box;
@@ -2209,10 +2244,14 @@ a.s-LinkDropDown input {
 .s-QuickSearchBar .s-QuickSearchInput:focus {
   outline: none;
 }
+.s-QuickSearchBar input.s-QuickSearchInput {
+  line-height: 23px;
+  height: 28px;
+}
 .has-quick-search-fields {
   border-right: none;
 }
-.s-QuickSearchBar.has-quick-search-fields .s-QuickSearchInput {
+.s-QuickSearchBar.has-quick-search-fields input.s-QuickSearchInput {
   border-radius: 0;
 }
 .s-QuickSearchLoading,

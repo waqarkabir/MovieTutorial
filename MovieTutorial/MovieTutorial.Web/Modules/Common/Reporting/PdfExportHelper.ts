@@ -1,4 +1,6 @@
-﻿namespace MovieTutorial.Common {
+﻿declare var jsPDF;
+
+namespace MovieTutorial.Common {
     export interface PdfExportOptions {
         grid: Serenity.DataGrid<any, any>;
         onViewSubmit: () => boolean;

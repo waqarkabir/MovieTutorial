@@ -1,18 +1,20 @@
 ﻿var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+        r = Reflect.decorate(decorators, target, key, desc);
+    else
+        for (var i = decorators.length - 1; i >= 0; i--)
+            if (d = decorators[i])
+                r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    for (var p in b)
+        if (b.hasOwnProperty(p) && p !== '__metadata')
+            d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-/// <reference path="../../../typings/rsvp/rsvp.d.ts" />
-/// <reference path="ServiceError.ts" />
-/// <reference path="../../../typings/jquery/jquery.d.ts" />
-/// <reference path="../Imports/SS.ts" />
 var Q;
 (function (Q) {
     function coalesce(a, b) {
@@ -79,8 +81,6 @@ var Q;
     }
     Q.deepClone = deepClone;
 })(Q || (Q = {}));
-/// <reference path="../Imports/SS.ts" />
-/// <reference path="Q.CommonTypes.ts" />
 var Q;
 (function (Q) {
     /**
@@ -197,7 +197,6 @@ var Q;
     }
     Q.tryFirst = tryFirst;
 })(Q || (Q = {}));
-/// <reference path="../Imports/SS.ts" />
 var Q;
 (function (Q) {
     function endsWith(s, search) {
@@ -306,7 +305,6 @@ var Q;
     }
     Q.zeroPad = zeroPad;
 })(Q || (Q = {}));
-/// <reference path="Q.StringHelpers.ts" />
 var Q;
 (function (Q) {
     var Culture;
@@ -337,8 +335,6 @@ var Q;
         }
     })(Culture = Q.Culture || (Q.Culture = {}));
 })(Q || (Q = {}));
-/// <reference path="Q.StringHelpers.ts" />
-/// <reference path="Q.Culture.ts" />
 var Q;
 (function (Q) {
     function formatNumber(n, fmt, dec, grp) {
@@ -487,7 +483,7 @@ var Q;
         id = $.trim(id);
         if (id == null || !id.length)
             return null;
-        if (id.length >= 15 || !(/^\d+$/.test(id)))
+        if (id.length >= 15 || !(/^-?\d+$/.test(id)))
             return id;
         var v = parseInt(id, 10);
         if (isNaN(v))
@@ -496,17 +492,37 @@ var Q;
     }
     Q.toId = toId;
 })(Q || (Q = {}));
-/// <reference path="Q.StringHelpers.ts" />
-/// <reference path="Q.Culture.ts" />
-/// <reference path="Q.Number.ts" />
 var Q;
 (function (Q) {
-    function formatDate(date, format) {
-        if (!date) {
+    function formatDate(d, format) {
+        if (!d) {
             return '';
         }
-        if (format == null) {
+        var date;
+        if (typeof d == "string") {
+            var res = Q.parseDate(d);
+            if (!res)
+                return d;
+            date = res;
+        }
+        else
+            date = d;
+        if (format == null || format == "d") {
             format = Q.Culture.dateFormat;
+        }
+        else {
+            switch (format) {
+                case "g":
+                    format = Q.Culture.dateTimeFormat.replace(":ss", "");
+                    break;
+                case "G":
+                    format = Q.Culture.dateTimeFormat;
+                    break;
+                case "s":
+                    format = "yyyy-MM-ddTHH:mm:ss";
+                    break;
+                case "u": return Q.formatISODateTimeUTC(date);
+            }
         }
         var pad = function (i) {
             return Q.zeroPad(i, 2);
@@ -578,9 +594,6 @@ var Q;
     function parseISODateTime(s) {
         if (!s || !s.length)
             return null;
-        var timestamp = Date.parse(s);
-        if (!isNaN(timestamp) && typeof timestamp == "Date")
-            return timestamp;
         s = s + "";
         if (typeof (s) != "string" || s.length === 0) {
             return null;
@@ -673,6 +686,13 @@ var Q;
     function parseDate(s, dateOrder) {
         if (!s || !s.length)
             return null;
+        if (s.length >= 10 && s.charAt(4) === '-' && s.charAt(7) === '-' &&
+            (s.length === 10 || (s.length > 10 && s.charAt(10) === 'T'))) {
+            var res = Q.parseISODateTime(s);
+            if (res == null)
+                return false;
+            return res;
+        }
         var dateVal;
         var dArray;
         var d, m, y;
@@ -745,7 +765,6 @@ var Q;
     }
     Q.splitDateString = splitDateString;
 })(Q || (Q = {}));
-/// <reference path="Q.ArrayUtils.ts" />
 var Q;
 (function (Q) {
     function text(key) {
@@ -795,33 +814,33 @@ var Q;
             }
             return t;
         };
-        LT.$table = {};
-        LT.empty = new LT('');
-        LT.initializeTextClass = function (type, prefix) {
-            var $t1 = Object.keys(type).slice();
-            for (var $t2 = 0; $t2 < $t1.length; $t2++) {
-                var member = $t1[$t2];
-                var value = type[member];
-                if (value instanceof LT) {
-                    var lt = value;
-                    var key = prefix + member;
-                    LT.$table[key] = lt.$key;
-                    type[member] = new LT(key);
-                }
-            }
-        };
-        LT.getDefault = function (key, defaultText) {
-            var t = LT.$table[key];
-            if (t == null) {
-                t = defaultText;
-                if (t == null) {
-                    t = key || '';
-                }
-            }
-            return t;
-        };
         return LT;
     }());
+    LT.$table = {};
+    LT.empty = new LT('');
+    LT.initializeTextClass = function (type, prefix) {
+        var $t1 = Object.keys(type).slice();
+        for (var $t2 = 0; $t2 < $t1.length; $t2++) {
+            var member = $t1[$t2];
+            var value = type[member];
+            if (value instanceof LT) {
+                var lt = value;
+                var key = prefix + member;
+                LT.$table[key] = lt.key;
+                type[member] = new LT(key);
+            }
+        }
+    };
+    LT.getDefault = function (key, defaultText) {
+        var t = LT.$table[key];
+        if (t == null) {
+            t = defaultText;
+            if (t == null) {
+                t = key || '';
+            }
+        }
+        return t;
+    };
     Q.LT = LT;
 })(Q || (Q = {}));
 var Q;
@@ -881,8 +900,6 @@ var Q;
     }());
     Q.Lookup = Lookup;
 })(Q || (Q = {}));
-/// <reference path="../../../typings/jquery.blockUI/jquery.blockUI.d.ts" />
-/// <reference path="../Imports/JQBlockUI.ts" />
 var Q;
 (function (Q) {
     var blockUICount = 0;
@@ -951,11 +968,11 @@ var Q;
         if (Q.isEmptyOrNull(elementId)) {
             return $('#' + relativeId);
         }
-        var result = $(elementId + relativeId);
+        var result = $('#' + elementId + relativeId);
         if (result.length > 0) {
             return result;
         }
-        result = $(elementId + '_' + relativeId);
+        result = $('#' + elementId + '_' + relativeId);
         if (result.length > 0) {
             return result;
         }
@@ -1020,10 +1037,6 @@ var Q;
     }
     Q.outerHtml = outerHtml;
 })(Q || (Q = {}));
-/// <reference path="../../../typings/jquery/jquery.d.ts" />
-/// <reference path="../../../typings/jqueryui/jqueryui.d.ts" />
-/// <reference path="Q.LocalText.ts" />
-/// <reference path="Q.Html.ts" />
 var Q;
 (function (Q) {
     function alert(message, options) {
@@ -1184,7 +1197,6 @@ var Q;
     }
     Q.warning = warning;
 })(Q || (Q = {}));
-/// <reference path="../../../typings/toastr/toastr.d.ts" />
 var Q;
 (function (Q) {
     Q.defaultNotifyOptions = {
@@ -1238,6 +1250,26 @@ var Q;
         }
     }
     Q.positionToastContainer = positionToastContainer;
+})(Q || (Q = {}));
+var Q;
+(function (Q) {
+    var ErrorHandling;
+    (function (ErrorHandling) {
+        function showServiceError(error) {
+            var msg;
+            if (error == null) {
+                msg = '??ERROR??';
+            }
+            else {
+                msg = error.Message;
+                if (msg == null) {
+                    msg = error.Code;
+                }
+            }
+            Q.alert(msg);
+        }
+        ErrorHandling.showServiceError = showServiceError;
+    })(ErrorHandling = Q.ErrorHandling || (Q.ErrorHandling = {}));
 })(Q || (Q = {}));
 var Q;
 (function (Q) {
@@ -1342,33 +1374,6 @@ var Q;
     }
     Q.resolveUrl = resolveUrl;
 })(Q || (Q = {}));
-/// <reference path="../Services/ServiceError.ts" />
-/// <reference path="Q.Dialogs.ts" />
-var Q;
-(function (Q) {
-    var ErrorHandling;
-    (function (ErrorHandling) {
-        function showServiceError(error) {
-            var msg;
-            if (error == null) {
-                msg = '??ERROR??';
-            }
-            else {
-                msg = error.Message;
-                if (msg == null) {
-                    msg = error.Code;
-                }
-            }
-            Q.alert(msg);
-        }
-        ErrorHandling.showServiceError = showServiceError;
-    })(ErrorHandling = Q.ErrorHandling || (Q.ErrorHandling = {}));
-})(Q || (Q = {}));
-/// <reference path="Q.BlockUI.ts" />
-/// <reference path="Q.Config.ts" />
-/// <reference path="Q.ErrorHandling.ts" />
-/// <reference path="Q.Url.ts" />
-/// <reference path="../Services/ServiceResponse.ts" />
 var Q;
 (function (Q) {
     function serviceCall(options) {
@@ -1376,6 +1381,7 @@ var Q;
             if (Q.Config.notLoggedInHandler != null &&
                 response &&
                 response.Error &&
+                response.Error.Code == 'NotLoggedIn' &&
                 Q.Config.notLoggedInHandler(options, response)) {
                 return;
             }
@@ -1433,7 +1439,16 @@ var Q;
                         }
                     }
                     var html = xhr.responseText;
-                    Q.iframeDialog({ html: html });
+                    if (!html) {
+                        if (!xhr.status)
+                            Q.alert("An unknown AJAX connection error occured! Check browser console for details.");
+                        else if (xhr.status == 500)
+                            Q.alert("HTTP 500: Connection refused! Check browser console for details.");
+                        else
+                            Q.alert("HTTP " + xhr.status + ' error! Check browser console for details.');
+                    }
+                    else
+                        Q.iframeDialog({ html: html });
                 }
                 finally {
                     if (options.blockUI) {
@@ -1467,29 +1482,6 @@ var Q;
 })(Q || (Q = {}));
 var Q;
 (function (Q) {
-    function addFullHeightResizeHandler(handler) {
-        $('body').addClass('full-height-page');
-        var layout = function () {
-            var avail;
-            try {
-                avail = parseInt($('.page-content').css('min-height') || '0')
-                    - parseInt($('.page-content').css('padding-top') || '0')
-                    - parseInt($('.page-content').css('padding-bottom') || '0');
-            }
-            catch ($t1) {
-                avail = 100;
-            }
-            handler(avail);
-        };
-        if (window.Metronic) {
-            window.Metronic.addResizeHandler(layout);
-        }
-        else {
-            $(window).resize(layout);
-        }
-        layout();
-    }
-    Q.addFullHeightResizeHandler = addFullHeightResizeHandler;
     function autoFullHeight(element) {
         element.css('height', '100%');
         triggerLayoutOnShow(element);
@@ -1520,6 +1512,8 @@ var Q;
             $(window).resize(layout);
         }
         layout();
+        // ugly, but to it is to make old pages work without having to add this
+        Q.Router.resolve();
     }
     Q.initFullHeightGridPage = initFullHeightGridPage;
     function layoutFillHeightValue(element) {
@@ -1539,7 +1533,7 @@ var Q;
     Q.layoutFillHeightValue = layoutFillHeightValue;
     function layoutFillHeight(element) {
         var h = layoutFillHeightValue(element);
-        var n = h + 'px';
+        var n = Math.round(h) + 'px';
         if (element.css('height') != n) {
             element.css('height', n);
         }
@@ -1577,10 +1571,6 @@ var Q;
     }
     Q.centerDialog = centerDialog;
 })(Q || (Q = {}));
-/// <reference path="Q.BlockUI.ts" />
-/// <reference path="Q.StringHelpers.ts" />
-/// <reference path="Q.Url.ts" />
-/// <reference path="../../../typings/rsvp/rsvp.d.ts" />
 var Q;
 (function (Q) {
     var ScriptData;
@@ -1685,8 +1675,9 @@ var Q;
         ScriptData.canLoad = canLoad;
         function setRegisteredScripts(scripts) {
             registered = {};
+            var t = new Date().getTime();
             for (var k in scripts) {
-                registered[k] = scripts[k].toString();
+                registered[k] = scripts[k] || t;
             }
         }
         ScriptData.setRegisteredScripts = setRegisteredScripts;
@@ -1749,9 +1740,6 @@ var Q;
     }
     Q.canLoadScriptData = canLoadScriptData;
 })(Q || (Q = {}));
-/// <reference path="Q.Layout.ts" />
-/// <reference path="Q.Lookup.ts" />
-/// <reference path="Q.ScriptData.ts" />
 var Q;
 (function (Q) {
     function prop(type, name, getter, setter) {
@@ -1867,6 +1855,284 @@ var Q;
             });
         });
     })(window || {});
+})(Q || (Q = {}));
+var Q;
+(function (Q) {
+    var Authorization;
+    (function (Authorization) {
+        function hasPermission(permission) {
+            if (permission == null)
+                return false;
+            if (permission == "*")
+                return true;
+            if (permission == "" || permission == "?")
+                return Authorization.isLoggedIn;
+            var ud = Authorization.userDefinition;
+            if (ud && ud.IsAdmin)
+                return true;
+            if (ud && ud.Permissions) {
+                var p = ud.Permissions;
+                if (p[permission])
+                    return true;
+                var orParts = permission.split('|');
+                for (var _i = 0, orParts_1 = orParts; _i < orParts_1.length; _i++) {
+                    var r = orParts_1[_i];
+                    if (!r)
+                        continue;
+                    var andParts = r.split('&');
+                    if (!andParts.length)
+                        continue;
+                    var fail = false;
+                    for (var _a = 0, andParts_1 = andParts; _a < andParts_1.length; _a++) {
+                        var n = andParts_1[_a];
+                        if (!p[n]) {
+                            fail = true;
+                            break;
+                        }
+                    }
+                    if (!fail)
+                        return true;
+                }
+            }
+            return false;
+        }
+        Authorization.hasPermission = hasPermission;
+        function validatePermission(permission) {
+            if (!hasPermission(permission)) {
+                Q.notifyError(Q.text("Authorization.AccessDenied"));
+                throw new Error(Q.text("Authorization.AccessDenied"));
+            }
+        }
+        Authorization.validatePermission = validatePermission;
+    })(Authorization = Q.Authorization || (Q.Authorization = {}));
+    Object.defineProperty(Q.Authorization, "userDefinition", {
+        get: function () {
+            return Q.getRemoteData("UserData");
+        }
+    });
+    Object.defineProperty(Q.Authorization, "isLoggedIn", {
+        get: function () {
+            var ud = Authorization.userDefinition;
+            return ud && !!ud.Username;
+        }
+    });
+    Object.defineProperty(Q.Authorization, "username", {
+        get: function () {
+            var ud = Authorization.userDefinition;
+            if (ud)
+                return ud.Username;
+            return null;
+        }
+    });
+})(Q || (Q = {}));
+var Q;
+(function (Q) {
+    var Router;
+    (function (Router) {
+        var oldURL;
+        var resolving = 0;
+        var autoinc = 0;
+        var listenerTimeout;
+        var ignoreHash = 0;
+        var ignoreTime = 0;
+        Router.enabled = true;
+        function isEqual(url1, url2) {
+            return url1 == url2 || url1 == url2 + '#' || url2 == url1 + '#';
+        }
+        function navigate(hash, tryBack, silent) {
+            if (!Router.enabled || resolving > 0)
+                return;
+            hash = hash || '';
+            hash = hash.replace(/^#/, '');
+            hash = (!hash ? "" : '#' + hash);
+            var newURL = window.location.href.replace(/#$/, '')
+                .replace(/#.*$/, '') + hash;
+            if (newURL != window.location.href) {
+                if (tryBack && oldURL != null && isEqual(oldURL, newURL)) {
+                    if (silent)
+                        ignoreChange();
+                    var prior = window.location.href;
+                    oldURL = null;
+                    window.history.back();
+                    return;
+                }
+                if (silent)
+                    ignoreChange();
+                oldURL = window.location.href;
+                window.location.hash = hash;
+            }
+        }
+        Router.navigate = navigate;
+        function replace(hash, tryBack) {
+            navigate(hash, tryBack, true);
+        }
+        Router.replace = replace;
+        function replaceLast(hash, tryBack) {
+            if (!Router.enabled)
+                return;
+            var current = window.location.hash || '';
+            if (current.charAt(0) == '#')
+                current = current.substr(1, current.length - 1);
+            var parts = current.split('/+/');
+            if (parts.length > 1) {
+                if (hash && hash.length) {
+                    parts[parts.length - 1] = hash;
+                    hash = parts.join("/+/");
+                }
+                else {
+                    parts.splice(parts.length - 1, 1);
+                    hash = parts.join("/+/");
+                }
+            }
+            replace(hash, tryBack);
+        }
+        Router.replaceLast = replaceLast;
+        function dialogOpen(owner, element, hash) {
+            var route = [];
+            var isDialog = owner.hasClass(".ui-dialog-content");
+            var dialog = isDialog ? owner :
+                owner.closest('.ui-dialog-content');
+            var value = hash();
+            var idPrefix;
+            if (dialog.length) {
+                var dialogs = $('.ui-dialog-content:visible');
+                var index = dialogs.index(dialog[0]);
+                for (var i = 0; i <= index; i++) {
+                    var q = dialogs.eq(i).data("qroute");
+                    if (q && q.length)
+                        route.push(q);
+                }
+                if (!isDialog) {
+                    idPrefix = dialog.attr("id");
+                    if (idPrefix) {
+                        idPrefix += "_";
+                        var id = owner.attr("id");
+                        if (id && Q.startsWith(id, idPrefix))
+                            value = id.substr(idPrefix.length) + '@' + value;
+                    }
+                }
+            }
+            else {
+                var id = owner.attr("id");
+                if (id && (!owner.hasClass("route-handler") ||
+                    $('.route-handler').first().attr("id") != id))
+                    value = id + "@" + value;
+            }
+            route.push(value);
+            element.data("qroute", value);
+            replace(route.join("/+/"));
+            element.bind("dialogclose.qrouter", function (e) {
+                element.data("qroute", null);
+                element.unbind(".qrouter");
+                var prhash = element.data("qprhash");
+                var tryBack = e && e.originalEvent &&
+                    ((e.originalEvent.type == "keydown" && e.originalEvent.keyCode == 27) ||
+                        $(e.originalEvent.target).hasClass("ui-dialog-titlebar-close"));
+                if (prhash != null)
+                    replace(prhash, tryBack);
+                else
+                    replaceLast('', tryBack);
+            });
+        }
+        function dialog(owner, element, hash) {
+            if (!Router.enabled)
+                return;
+            element.bind("dialogopen.qrouter", function (e) {
+                dialogOpen(owner, element, hash);
+            });
+        }
+        Router.dialog = dialog;
+        function resolve(hash) {
+            if (!Router.enabled)
+                return;
+            resolving++;
+            try {
+                hash = Q.coalesce(Q.coalesce(hash, window.location.hash), '');
+                if (hash.charAt(0) == '#')
+                    hash = hash.substr(1, hash.length - 1);
+                var newParts = hash.split("/+/");
+                var dialogs = $('.ui-dialog-content:visible');
+                var oldParts = dialogs.toArray()
+                    .map(function (el) { return $(el).data('qroute'); });
+                var same = 0;
+                while (same < dialogs.length &&
+                    same < newParts.length &&
+                    oldParts[same] == newParts[same]) {
+                    same++;
+                }
+                for (var i = same; i < dialogs.length; i++)
+                    dialogs.eq(i).dialog('close');
+                for (var i = same; i < newParts.length; i++) {
+                    var route = newParts[i];
+                    var routeParts = route.split('@');
+                    var handler;
+                    if (routeParts.length == 2) {
+                        var dialog = i > 0 ? $('.ui-dialog-content:visible').eq(i - 1) : $([]);
+                        if (dialog.length) {
+                            var idPrefix = dialog.attr("id");
+                            if (idPrefix) {
+                                handler = $('#' + idPrefix + "_" + routeParts[0]);
+                                if (handler.length) {
+                                    route = routeParts[1];
+                                }
+                            }
+                        }
+                        if (!handler || !handler.length) {
+                            handler = $('#' + routeParts[0]);
+                            if (handler.length) {
+                                route = routeParts[1];
+                            }
+                        }
+                    }
+                    if (!handler || !handler.length) {
+                        handler = i > 0 ? $('.ui-dialog-content:visible').eq(i - 1) :
+                            $('.route-handler').first();
+                    }
+                    handler.triggerHandler("handleroute", {
+                        handled: false,
+                        route: route,
+                        parts: newParts,
+                        index: i
+                    });
+                }
+            }
+            finally {
+                resolving--;
+            }
+        }
+        Router.resolve = resolve;
+        function hashChange(e, o) {
+            if (ignoreHash > 0) {
+                if (new Date().getTime() - ignoreTime > 1000) {
+                    ignoreHash = 0;
+                }
+                else {
+                    ignoreHash--;
+                    return;
+                }
+            }
+            resolve();
+        }
+        function ignoreChange() {
+            ignoreHash++;
+            ignoreTime = new Date().getTime();
+        }
+        window.addEventListener("hashchange", hashChange, false);
+        $(document).on("dialogopen", ".ui-dialog-content", function (event, ui) {
+            if (!Router.enabled)
+                return;
+            var dlg = $(event.target);
+            if (dlg.data("qroute"))
+                return;
+            dlg.data("qprhash", window.location.hash);
+            var owner = $('.ui-dialog-content:visible').not(dlg).last();
+            if (!owner.length)
+                owner = $('html');
+            dialogOpen(owner, dlg, function () {
+                return "!" + (++autoinc).toString(36);
+            });
+        });
+    })(Router = Q.Router || (Q.Router = {}));
 })(Q || (Q = {}));
 var Serenity;
 (function (Serenity) {
@@ -2021,20 +2287,17 @@ var Serenity;
     }());
     Serenity.ServiceAttribute = ServiceAttribute;
 })(Serenity || (Serenity = {}));
-/// <reference path="Attributes.ts" />
 var Serenity;
 (function (Serenity) {
     var Decorators;
     (function (Decorators) {
         function addAttribute(type, attr) {
-            var old = type.__metadata;
             type.__metadata = type.__metadata || {};
             type.__metadata.attr = type.__metadata.attr || [];
             type.__metadata.attr.push(attr);
         }
         Decorators.addAttribute = addAttribute;
         function addMemberAttr(type, memberName, attr) {
-            var old = type.__metadata;
             type.__metadata = type.__metadata || {};
             type.__metadata.members = type.__metadata.members || [];
             var member = undefined;
@@ -2240,7 +2503,6 @@ var Serenity;
         return [field];
     }
     Serenity.Criteria = Criteria;
-    var Criteria;
     (function (Criteria) {
         var C = Criteria;
         function isEmpty(c) {
@@ -2434,19 +2696,30 @@ var Serenity;
             return indexByKey;
         }
         TabsExtensions.indexByKey = indexByKey;
+        function selectTab(tabs, tabKey) {
+            var ibk = indexByKey(tabs);
+            if (!ibk)
+                return;
+            var index = ibk[tabKey];
+            if (index == null) {
+                return;
+            }
+            if (index !== tabs.tabs('option', 'active')) {
+                tabs.tabs('option', 'active', index);
+            }
+        }
+        TabsExtensions.selectTab = selectTab;
     })(TabsExtensions = Serenity.TabsExtensions || (Serenity.TabsExtensions = {}));
 })(Serenity || (Serenity = {}));
-/// <reference path="../../../../typings/jquery/jquery.d.ts" />
-/// <reference path="../../../../typings/jquery.validation/jquery.validation.d.ts" />
 var Serenity;
 (function (Serenity) {
-    var Widget = (function () {
+    var Widget = Widget_1 = (function () {
         function Widget(element, options) {
             var _this = this;
             this.element = element;
             this.options = options || {};
-            this.widgetName = Widget.getWidgetName(ss.getInstanceType(this));
-            this.uniqueName = this.widgetName + (Widget.nextWidgetNumber++).toString();
+            this.widgetName = Widget_1.getWidgetName(ss.getInstanceType(this));
+            this.uniqueName = this.widgetName + (Widget_1.nextWidgetNumber++).toString();
             if (element.data(this.widgetName)) {
                 throw new ss.Exception(Q.format("The element already has widget '{0}'!", this.widgetName));
             }
@@ -2467,7 +2740,7 @@ var Serenity;
         }
         Widget.prototype.destroy = function () {
             this.element.removeClass('s-' + ss.getTypeName(ss.getInstanceType(this)));
-            this.element.unbind('.' + this.widgetName).removeData(this.widgetName);
+            this.element.unbind('.' + this.widgetName).unbind('.' + this.uniqueName).removeData(this.widgetName);
             this.element = null;
             this.asyncPromise = null;
         };
@@ -2515,7 +2788,7 @@ var Serenity;
                 params.element && params.element(widget.element);
             }
             else {
-                var e = Widget.elementFor(params.type);
+                var e = Widget_1.elementFor(params.type);
                 if (params.container)
                     e.appendTo(params.container);
                 params.element && params.element(e);
@@ -2541,24 +2814,39 @@ var Serenity;
             }
             return this.asyncPromise;
         };
-        Widget.nextWidgetNumber = 0;
-        Widget = __decorate([
-            Serenity.Decorators.registerClass()
-        ], Widget);
         return Widget;
     }());
+    Widget.nextWidgetNumber = 0;
+    Widget = Widget_1 = __decorate([
+        Serenity.Decorators.registerClass()
+    ], Widget);
     Serenity.Widget = Widget;
+    var Widget_1;
 })(Serenity || (Serenity = {}));
 var Serenity;
 (function (Serenity) {
-    var TemplatedWidget = (function (_super) {
+    var TemplatedWidget = TemplatedWidget_1 = (function (_super) {
         __extends(TemplatedWidget, _super);
         function TemplatedWidget(container, options) {
-            _super.call(this, container, options);
-            this.idPrefix = this.uniqueName + '_';
-            var widgetMarkup = this.getTemplate().replace(new RegExp('~_', 'g'), this.idPrefix);
-            widgetMarkup = Q.jsRender(widgetMarkup);
-            this.element.html(widgetMarkup);
+            var _this = _super.call(this, container, options) || this;
+            _this.idPrefix = _this.uniqueName + '_';
+            var widgetMarkup = _this.getTemplate().replace(new RegExp('~_', 'g'), _this.idPrefix);
+            // for compability with older templates based on JsRender
+            var end = 0;
+            while (true) {
+                var idx = widgetMarkup.indexOf('{{text:"', end);
+                if (idx < 0)
+                    break;
+                var end = widgetMarkup.indexOf('"}}', idx);
+                if (end < 0)
+                    break;
+                var key = widgetMarkup.substr(idx + 8, end - idx - 8);
+                var text = Q.text(key);
+                widgetMarkup = widgetMarkup.substr(0, idx) + text + widgetMarkup.substr(end + 3);
+                end = idx + text.length;
+            }
+            _this.element.html(widgetMarkup);
+            return _this;
         }
         TemplatedWidget.prototype.byId = function (id) {
             return $('#' + this.idPrefix + id);
@@ -2576,8 +2864,8 @@ var Serenity;
             };
             var type = ss.getInstanceType(this);
             var fullName = ss.getTypeFullName(type);
-            var templateNames = TemplatedWidget.templateNames;
-            var cachedName = TemplatedWidget.templateNames[fullName];
+            var templateNames = TemplatedWidget_1.templateNames;
+            var cachedName = TemplatedWidget_1.templateNames[fullName];
             if (cachedName != null) {
                 return cachedName;
             }
@@ -2603,7 +2891,7 @@ var Serenity;
                 name = noGeneric(ss.getTypeName(type));
                 if (Q.canLoadScriptData('Template.' + name) ||
                     $('script#Template_' + name).length > 0) {
-                    TemplatedWidget.templateNames[fullName] = name;
+                    TemplatedWidget_1.templateNames[fullName] = name;
                     return name;
                 }
                 type = ss.getBaseType(type);
@@ -2623,27 +2911,54 @@ var Serenity;
             }
             return template;
         };
-        TemplatedWidget.templateNames = {};
-        TemplatedWidget = __decorate([
-            Serenity.Decorators.registerClass()
-        ], TemplatedWidget);
         return TemplatedWidget;
     }(Serenity.Widget));
+    TemplatedWidget.templateNames = {};
+    TemplatedWidget = TemplatedWidget_1 = __decorate([
+        Serenity.Decorators.registerClass()
+    ], TemplatedWidget);
     Serenity.TemplatedWidget = TemplatedWidget;
+    var TemplatedWidget_1;
 })(Serenity || (Serenity = {}));
 var Serenity;
 (function (Serenity) {
-    var TemplatedDialog = (function (_super) {
+    var IBooleanValue = (function () {
+        function IBooleanValue() {
+        }
+        return IBooleanValue;
+    }());
+})(Serenity || (Serenity = {}));
+var Serenity;
+(function (Serenity) {
+    var IDoubleValue = (function () {
+        function IDoubleValue() {
+        }
+        return IDoubleValue;
+    }());
+})(Serenity || (Serenity = {}));
+var Serenity;
+(function (Serenity) {
+    var IStringValue = (function () {
+        function IStringValue() {
+        }
+        return IStringValue;
+    }());
+})(Serenity || (Serenity = {}));
+var Serenity;
+(function (Serenity) {
+    var TemplatedDialog = TemplatedDialog_1 = (function (_super) {
         __extends(TemplatedDialog, _super);
         function TemplatedDialog(options) {
-            _super.call(this, Q.newBodyDiv(), options);
-            this.isPanel = ss.getAttributes(ss.getInstanceType(this), Serenity.PanelAttribute, true).length > 0;
-            if (!this.isPanel) {
-                this.initDialog();
+            var _this = _super.call(this, Q.newBodyDiv(), options) || this;
+            _this.element.attr("id", _this.uniqueName);
+            _this.isPanel = ss.getAttributes(ss.getInstanceType(_this), Serenity.PanelAttribute, true).length > 0;
+            if (!_this.isPanel) {
+                _this.initDialog();
             }
-            this.initValidator();
-            this.initTabs();
-            this.initToolbar();
+            _this.initValidator();
+            _this.initTabs();
+            _this.initToolbar();
+            return _this;
         }
         TemplatedDialog.getCssSize = function (element, name) {
             var cssSize = element.css(name);
@@ -2664,16 +2979,16 @@ var Serenity;
             var dialog = $('<div/>').hide().addClass(dialogClass).appendTo(document.body);
             try {
                 var sizeHelper = $('<div/>').addClass('size').appendTo(dialog);
-                size = TemplatedDialog.getCssSize(sizeHelper, 'minWidth');
+                size = TemplatedDialog_1.getCssSize(sizeHelper, 'minWidth');
                 if (size != null)
                     opt.minWidth = size;
-                size = TemplatedDialog.getCssSize(sizeHelper, 'width');
+                size = TemplatedDialog_1.getCssSize(sizeHelper, 'width');
                 if (size != null)
                     opt.width = size;
-                size = TemplatedDialog.getCssSize(sizeHelper, 'height');
+                size = TemplatedDialog_1.getCssSize(sizeHelper, 'height');
                 if (size != null)
                     opt.height = size;
-                size = TemplatedDialog.getCssSize(sizeHelper, 'minHeight');
+                size = TemplatedDialog_1.getCssSize(sizeHelper, 'minHeight');
                 if (size != null)
                     opt.minHeight = size;
             }
@@ -2696,6 +3011,7 @@ var Serenity;
         TemplatedDialog.prototype.initDialog = function () {
             var _this = this;
             this.element.dialog(this.getDialogOptions());
+            this.element.closest('.ui-dialog').on('resize', function (e) { return _this.arrange(); });
             var type = ss.getInstanceType(this);
             this.responsive = Q.Config.responsiveDialogs ||
                 ss.getAttributes(type, Serenity.ResponsiveAttribute, true).length > 0;
@@ -2803,7 +3119,7 @@ var Serenity;
             var dialogClass = 's-Dialog ' + this.getCssClass();
             opt.dialogClass = dialogClass;
             opt.width = 920;
-            TemplatedDialog.applyCssSizes(opt, dialogClass);
+            TemplatedDialog_1.applyCssSizes(opt, dialogClass);
             opt.autoOpen = false;
             var type = ss.getInstanceType(this);
             opt.resizable = ss.getAttributes(type, Serenity.ResizableAttribute, true).length > 0;
@@ -2837,11 +3153,13 @@ var Serenity;
             this.dialogTitle = value;
         };
         TemplatedDialog.prototype.initTabs = function () {
+            var _this = this;
             var tabsDiv = this.byId('Tabs');
             if (tabsDiv.length === 0) {
                 return;
             }
             this.tabs = tabsDiv.tabs({});
+            this.tabs.bind('tabsactivate', function () { return _this.arrange(); });
         };
         TemplatedDialog.prototype.handleResponsive = function () {
             var dlg = this.element.dialog();
@@ -2879,22 +3197,21 @@ var Serenity;
                 }
             }
         };
-        TemplatedDialog = __decorate([
-            Serenity.Decorators.registerClass([Serenity.IDialog])
-        ], TemplatedDialog);
         return TemplatedDialog;
     }(Serenity.TemplatedWidget));
+    TemplatedDialog = TemplatedDialog_1 = __decorate([
+        Serenity.Decorators.registerClass([Serenity.IDialog])
+    ], TemplatedDialog);
     Serenity.TemplatedDialog = TemplatedDialog;
+    var TemplatedDialog_1;
 })(Serenity || (Serenity = {}));
-/// <reference path="../../../../typings/sortablejs/sortablejs.d.ts" />
 var Serenity;
 (function (Serenity) {
     var ColumnPickerDialog = (function (_super) {
         __extends(ColumnPickerDialog, _super);
         function ColumnPickerDialog() {
-            var _this = this;
-            _super.call(this);
-            new Serenity.QuickSearchInput(this.byId("Search"), {
+            var _this = _super.call(this) || this;
+            new Serenity.QuickSearchInput(_this.byId("Search"), {
                 onSearch: function (fld, txt, done) {
                     txt = Q.trimToNull(txt);
                     if (txt != null)
@@ -2904,31 +3221,39 @@ var Serenity;
                     });
                 }
             });
-            this.ulVisible = this.byId("VisibleCols");
-            this.ulHidden = this.byId("HiddenCols");
+            _this.ulVisible = _this.byId("VisibleCols");
+            _this.ulHidden = _this.byId("HiddenCols");
+            return _this;
         }
         ColumnPickerDialog.createToolButton = function (grid) {
+            function onClick() {
+                var picker = new Serenity.ColumnPickerDialog();
+                picker.allColumns = grid.allColumns;
+                if (grid.initialSettings) {
+                    var initialSettings = grid.initialSettings;
+                    if (initialSettings.columns && initialSettings.columns.length)
+                        picker.defaultColumns = initialSettings.columns.map(function (x) { return x.id; });
+                }
+                picker.visibleColumns = grid.slickGrid.getColumns().map(function (x) { return x.id; });
+                picker.done = function () {
+                    grid.allColumns = picker.allColumns;
+                    var visible = picker.allColumns.filter(function (x) { return x.visible === true; });
+                    grid.slickGrid.setColumns(visible);
+                    grid.persistSettings();
+                    grid.refresh();
+                };
+                Q.Router.dialog(grid.element, picker.element, function () { return "columns"; });
+                picker.dialogOpen();
+            }
+            grid.element.on('handleroute.' + grid.uniqueName, function (e, arg) {
+                if (arg && !arg.handled && arg.route == "columns") {
+                    onClick();
+                }
+            });
             return {
                 hint: Q.text("Controls.ColumnPickerDialog.Title"),
                 cssClass: "column-picker-button",
-                onClick: function () {
-                    var picker = new Serenity.ColumnPickerDialog();
-                    picker.allColumns = grid.allColumns;
-                    if (grid.initialSettings) {
-                        var initialSettings = grid.initialSettings;
-                        if (initialSettings.columns && initialSettings.columns.length)
-                            picker.defaultColumns = initialSettings.columns.map(function (x) { return x.id; });
-                    }
-                    picker.visibleColumns = grid.slickGrid.getColumns().map(function (x) { return x.id; });
-                    picker.done = function () {
-                        grid.allColumns = picker.allColumns;
-                        var visible = picker.allColumns.filter(function (x) { return x.visible === true; });
-                        grid.slickGrid.setColumns(visible);
-                        grid.persistSettings();
-                        grid.refresh();
-                    };
-                    picker.dialogOpen();
-                }
+                onClick: onClick
             };
         };
         ColumnPickerDialog.prototype.getDialogOptions = function () {
@@ -3029,7 +3354,9 @@ var Serenity;
             var hidden = [];
             for (var _d = 0, _e = this.allColumns; _d < _e.length; _d++) {
                 var c_2 = _e[_d];
-                if (!visible[c_2.id] && (!c_2.sourceItem || c_2.sourceItem.filterOnly !== true)) {
+                if (!visible[c_2.id] && (!c_2.sourceItem ||
+                    (c_2.sourceItem.filterOnly !== true &&
+                        (c_2.sourceItem.readPermission == null || Q.Authorization.hasPermission(c_2.sourceItem.readPermission))))) {
                     hidden.push(c_2);
                 }
             }
@@ -3081,14 +3408,97 @@ var Serenity;
         ColumnPickerDialog.prototype.getTemplate = function () {
             return "\n<div class=\"search\"><input id=\"~_Search\" type=\"text\" disabled /></div>\n<div class=\"columns-container\">\n<div class=\"column-list visible-list bg-success\">\n  <h5><i class=\"icon-eye\"></i> " + Q.text("Controls.ColumnPickerDialog.VisibleColumns") + "</h5>\n  <ul id=\"~_VisibleCols\"></ul>\n</div>\n<div class=\"column-list hidden-list bg-info\">\n  <h5><i class=\"icon-list\"></i> " + Q.text("Controls.ColumnPickerDialog.HiddenColumns") + "</h5>\n  <ul id=\"~_HiddenCols\"></ul>\n</div>\n</div>";
         };
-        ColumnPickerDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.resizable(),
-            Serenity.Decorators.responsive()
-        ], ColumnPickerDialog);
         return ColumnPickerDialog;
     }(Serenity.TemplatedDialog));
+    ColumnPickerDialog = __decorate([
+        Serenity.Decorators.registerClass(),
+        Serenity.Decorators.resizable(),
+        Serenity.Decorators.responsive()
+    ], ColumnPickerDialog);
     Serenity.ColumnPickerDialog = ColumnPickerDialog;
+})(Serenity || (Serenity = {}));
+var Serenity;
+(function (Serenity) {
+    /**
+     * A mixin that can be applied to a DataGrid for tree functionality
+     */
+    var TreeGridMixin = (function () {
+        function TreeGridMixin(options) {
+            this.options = options;
+            var dg = this.dataGrid = options.grid;
+            var idProperty = dg.getIdProperty();
+            var getId = this.getId = function (item) { return item[idProperty]; };
+            dg.element.find('.grid-container').on('click', function (e) {
+                if ($(e.target).hasClass('s-TreeToggle')) {
+                    var src = dg.slickGrid.getCellFromEvent(e);
+                    if (src.cell >= 0 &&
+                        src.row >= 0) {
+                        Serenity.SlickTreeHelper.toggleClick(e, src.row, src.row, dg.view, getId);
+                    }
+                }
+            });
+            var oldViewFilter = dg.onViewFilter;
+            dg.onViewFilter = function (item) {
+                if (!oldViewFilter.apply(this, [item]))
+                    return false;
+                return Serenity.SlickTreeHelper.filterById(item, dg.view, options.getParentId);
+            };
+            var oldProcessData = dg.onViewProcessData;
+            dg.onViewProcessData = function (response) {
+                response = oldProcessData.apply(this, [response]);
+                response.Entities = TreeGridMixin.applyTreeOrdering(response.Entities, getId, options.getParentId);
+                Serenity.SlickTreeHelper.setIndents(response.Entities, getId, options.getParentId, (options.initialCollapse && options.initialCollapse()) || false);
+                return response;
+            };
+            if (options.toggleField) {
+                var col = Q.first(dg.getGrid().getColumns(), function (x) { return x.field == options.toggleField; });
+                col.format = Serenity.SlickFormatting.treeToggle(function () { return dg.view; }, getId, col.format || (function (ctx) { return Q.htmlEncode(ctx.value); }));
+                col.formatter = Serenity.SlickHelper.convertToFormatter(col.format);
+            }
+        }
+        /**
+         * Expands / collapses all rows in a grid automatically
+         */
+        TreeGridMixin.prototype.toggleAll = function () {
+            Serenity.SlickTreeHelper.setCollapsed(this.dataGrid.view.getItems(), !this.dataGrid.view.getItems().every(function (x) { return x._collapsed == true; }));
+            this.dataGrid.view.setItems(this.dataGrid.view.getItems(), true);
+        };
+        /**
+         * Reorders a set of items so that parents comes before their children.
+         * This method is required for proper tree ordering, as it is not so easy to perform with SQL.
+         * @param items list of items to be ordered
+         * @param getId a delegate to get ID of a record (must return same ID with grid identity field)
+         * @param getParentId a delegate to get parent ID of a record
+         */
+        TreeGridMixin.applyTreeOrdering = function (items, getId, getParentId) {
+            var result = [];
+            var byId = Q.toGrouping(items, getId);
+            var byParentId = Q.toGrouping(items, getParentId);
+            var visited = {};
+            function takeChildren(theParentId) {
+                if (visited[theParentId])
+                    return;
+                visited[theParentId] = true;
+                for (var _i = 0, _a = (byParentId[theParentId] || []); _i < _a.length; _i++) {
+                    var child = _a[_i];
+                    result.push(child);
+                    takeChildren(getId(child));
+                }
+            }
+            for (var _i = 0, items_2 = items; _i < items_2.length; _i++) {
+                var item = items_2[_i];
+                var parentId = getParentId(item);
+                if (parentId == null ||
+                    !((byId[parentId] || []).length)) {
+                    result.push(item);
+                    takeChildren(getId(item));
+                }
+            }
+            return result;
+        };
+        return TreeGridMixin;
+    }());
+    Serenity.TreeGridMixin = TreeGridMixin;
 })(Serenity || (Serenity = {}));
 if ($.fn.button && $.fn.button.noConflict) {
     var btn = $.fn.button.noConflict();
@@ -3117,7 +3527,6 @@ if ($.fn.button && $.fn.button.noConflict) {
     var btn = $.fn.button.noConflict();
     $.fn.btn = btn;
 }
-/// <reference path="../../typings/jquery/jquery.d.ts" />
 // PAGER -----
 (function ($) {
     $.widget("ui.slickPager", {
@@ -3268,7 +3677,6 @@ var Slick;
         var GroupItemMetadataProvider;
     })(Data = Slick.Data || (Slick.Data = {}));
 })(Slick || (Slick = {}));
-var Slick;
 (function (Slick) {
     var RemoteView = (function () {
         function RemoteView(options) {
@@ -3387,7 +3795,12 @@ var Slick;
                 summaryOptions.totals = {};
                 updateIdxById();
                 ensureIdUniqueness();
-                refresh();
+                if (suspend) {
+                    recalc(items);
+                }
+                else {
+                    refresh();
+                }
                 onDataChanged.notify({ dataView: self }, null, self);
             }
             function setPagingOptions(args) {
@@ -4313,7 +4726,6 @@ var Slick;
     }());
     Slick.RemoteView = RemoteView;
 })(Slick || (Slick = {}));
-var Slick;
 (function (Slick) {
     var Aggregators;
     (function (Aggregators) {
@@ -4433,11 +4845,6 @@ var Slick;
         Aggregators.Sum = Sum;
     })(Aggregators = Slick.Aggregators || (Slick.Aggregators = {}));
 })(Slick || (Slick = {}));
-/// <reference path = "Q/Q.Config.ts" />
-/// <reference path = "Q/Q.Culture.ts" />
-/// <reference path = "Q/Q.LocalText.ts" />
-/// <reference path = "Q/Q.Notify.ts" />
-/// <reference path = "Q/Q.Url.ts" />
 var Q;
 (function (Q) {
     var oldShowLabel;
@@ -4489,7 +4896,15 @@ var Q;
         oldShowLabel = p.showLabel;
         p.showLabel = validateShowLabel;
         $.validator.addMethod("dateQ", function (value, element) {
-            return this.optional(element) || Q.parseDate(value) != false;
+            var o = this.optional(element);
+            if (o)
+                return o;
+            var d = Q.parseDate(value);
+            if (!d)
+                return false;
+            var z = new Date(d);
+            z.setHours(0, 0, 0, 0);
+            return z.getTime() === d.getTime();
         });
         $.validator.addMethod("hourAndMin", function (value, element) {
             return this.optional(element) || !isNaN(Q.parseHourAndMin(value));
@@ -4626,8 +5041,15 @@ var Q;
             submitHandler: function () {
                 return false;
             },
-            invalidHandler: function () {
+            invalidHandler: function (event, validator) {
                 Q.notifyError(Q.text("Validation.InvalidFormMessage"));
+                $(validator.errorList.map(function (x) { return x.element; }))
+                    .closest('.category.collapsed')
+                    .children('.category-title')
+                    .each(function (i, x) {
+                    $(x).click();
+                    return true;
+                });
             },
             success: function (label) {
                 label.addClass('checked');
@@ -4660,7 +5082,7 @@ var Q;
             dateFormat: (order == 'mdy' ? 'mm' + s + 'dd' + s + 'yy' :
                 (order == 'ymd' ? 'yy' + s + 'mm' + s + 'dd' :
                     'dd' + s + 'mm' + s + 'yy')),
-            buttonImage: Q.resolveUrl('~/content/serenity/images/datepicker.png'),
+            buttonImage: Q.resolveUrl('~/Content/serenity/images/datepicker.png'),
             buttonImageOnly: true,
             showOn: 'both',
             showButtonPanel: true,
@@ -4713,5 +5135,94 @@ var Q;
                 ssExceptionInitialization();
         });
     }
+    function vueInitialization() {
+        Vue.component('editor', {
+            props: {
+                type: {
+                    type: String,
+                    required: true,
+                },
+                id: {
+                    type: String,
+                    required: false
+                },
+                name: {
+                    type: String,
+                    required: false
+                },
+                placeholder: {
+                    type: String,
+                    required: false
+                },
+                value: {
+                    required: false
+                },
+                options: {
+                    required: false
+                },
+                maxLength: {
+                    required: false
+                }
+            },
+            render: function (createElement) {
+                var editorType = Serenity.EditorTypeRegistry.get(this.type);
+                var elementAttr = ss.getAttributes(editorType, Serenity.ElementAttribute, true);
+                var elementHtml = ((elementAttr.length > 0) ? elementAttr[0].value : '<input/>');
+                var domProps = {};
+                var element = $(elementHtml)[0];
+                var attrs = element.attributes;
+                for (var i = 0; i < attrs.length; i++) {
+                    var attr = attrs.item(i);
+                    domProps[attr.name] = attr.value;
+                }
+                if (this.id != null)
+                    domProps.id = this.id;
+                if (this.name != null)
+                    domProps.name = this.name;
+                if (this.placeholder != null)
+                    domProps.placeholder = this.placeholder;
+                var editorParams = this.options;
+                var optionsType = null;
+                var self = this;
+                var el = createElement(element.tagName, {
+                    domProps: domProps
+                });
+                this.$editorType = editorType;
+                return el;
+            },
+            watch: {
+                value: function (v) {
+                    Serenity.EditorUtils.setValue(this.$widget, v);
+                }
+            },
+            mounted: function () {
+                var self = this;
+                this.$widget = new this.$editorType($(this.$el), this.options);
+                this.$widget.initialize();
+                if (this.maxLength) {
+                    Serenity.PropertyGrid.$setMaxLength(this.$widget, this.maxLength);
+                }
+                if (this.options)
+                    Serenity.ReflectionOptionsSetter.set(this.$widget, this.options);
+                if (this.value != null)
+                    Serenity.EditorUtils.setValue(this.$widget, this.value);
+                if ($(this.$el).data('select2'))
+                    Serenity.WX.changeSelect2(this.$widget, function () {
+                        self.$emit('input', Serenity.EditorUtils.getValue(self.$widget));
+                    });
+                else
+                    Serenity.WX.change(this.$widget, function () {
+                        self.$emit('input', Serenity.EditorUtils.getValue(self.$widget));
+                    });
+            },
+            destroyed: function () {
+                if (this.$widget) {
+                    this.$widget.destroy();
+                    this.$widget = null;
+                }
+            }
+        });
+    }
+    window['Vue'] ? vueInitialization() : $(function () { window['Vue'] && vueInitialization(); });
 })(Q || (Q = {}));
 //# sourceMappingURL=Serenity.CoreLib.js.map

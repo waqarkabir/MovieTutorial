@@ -21,8 +21,9 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup>
     <TypeScriptTarget>ES5</TypeScriptTarget>
@@ -74,29 +75,26 @@
       <HintPath>..\..\packages\MsieJavaScriptEngine.1.7.0\lib\net40\MsieJavaScriptEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Core, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.2.2.1\lib\net45\Serenity.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NUglify, Version=1.5.8.0, Culture=neutral, PublicKeyToken=15bc7810aec21b5e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUglify.1.5.8\lib\net40\NUglify.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Data, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.2.2.1\lib\net45\Serenity.Data.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Serenity.Core, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.3.0.5\lib\net45\Serenity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.2.1\lib\net45\Serenity.Data.Entity.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Serenity.Data, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.3.0.5\lib\net45\Serenity.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Services, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.2.2.1\lib\net45\Serenity.Services.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Serenity.Data.Entity, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.3.0.5\lib\net45\Serenity.Data.Entity.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Web, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.2.2.1\lib\net45\Serenity.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Serenity.Services, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.3.0.5\lib\net45\Serenity.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Serenity.Web, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.3.0.5\lib\net45\Serenity.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
@@ -627,9 +625,17 @@
     <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
     <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
     <Content Include="Content\themes\base\menu.css" />
     <Content Include="Content\themes\base\progressbar.css" />
     <Content Include="Content\themes\base\resizable.css" />
@@ -647,7 +653,6 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\ionicons.svg" />
-    <Content Include="fonts\Simple-Line-Icons.dev.svg" />
     <Content Include="fonts\Simple-Line-Icons.svg" />
     <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
     <Content Include="Content\site\site.administration.less" />
@@ -655,6 +660,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ClientTypes.log</LastGenOutput>
     </Content>
+    <None Include="package.json" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\adminlte\app.js" />
     <Content Include="Scripts\adminlte\app.min.js" />
@@ -768,6 +774,7 @@
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\cs.js" />
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\cy.js" />
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\da.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\de-ch.js" />
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\de.js" />
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\el.js" />
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\en-gb.js" />
@@ -1168,12 +1175,16 @@
     <TypeScriptCompile Include="Modules\Administration\User\Authentication\Authorization.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\toastr.scss" />
-    <Content Include="Content\toastr.less" />
     <Content Include="fonts\Simple-Line-Icons.woff2" />
     <Content Include="fonts\Simple-Line-Icons.woff" />
     <Content Include="fonts\Simple-Line-Icons.ttf" />
@@ -1181,10 +1192,6 @@
     <Content Include="fonts\ionicons.woff" />
     <Content Include="fonts\ionicons.ttf" />
     <Content Include="fonts\ionicons.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -1254,11 +1261,13 @@
     <TypeScriptCompile Include="Modules\MovieDB\Movie\GenreListFormatter.ts" />
     <Content Include="Modules\MovieDB\Person\MovieDB.PersonDialog.Template.html" />
     <TypeScriptCompile Include="Modules\MovieDB\Person\PersonMovieGrid.ts" />
-    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.3.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\jquery.autoNumeric.js" />
@@ -1284,6 +1293,8 @@
     <Content Include="Scripts\jquery.iframe-transport.min.js" />
     <Content Include="Scripts\jquery.json.js" />
     <Content Include="Scripts\jquery.json.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
     <Content Include="Scripts\jquery.scrollintoview.js" />
     <Content Include="Scripts\jquery.scrollintoview.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
@@ -1350,8 +1361,6 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\serenity\Serenity.CoreLib.js" />
     <Content Include="Scripts\serenity\Serenity.CoreLib.min.js" />
-    <Content Include="Scripts\serenity\Serenity.Externals.js" />
-    <Content Include="Scripts\serenity\Serenity.Externals.Slick.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
@@ -1389,12 +1398,16 @@
     <Content Include="Scripts\jspdf.plugin.autotable.js" />
     <Content Include="Scripts\jspdf.plugin.autotable.min.js" />
     <Content Include="packages.config" />
-    <Content Include="Scripts\jquery-2.2.3.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Scripts\serenity\texts\serenity.texts.zh-CN.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.vi-VN.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.pt.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.pt-BR.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.it.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.fa.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
     <None Include="Scripts\site\ScriptBundles.json" />
@@ -1409,8 +1422,6 @@
     <Content Include="tools\Mono.Cecil\Mono.Cecil.Mdb.dll" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.Pdb.dll" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.Rocks.dll" />
-    <Content Include="tools\Node\less\lib\lessc" />
-    <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
     <None Include="tsconfig.json" />
@@ -1436,6 +1447,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ServerTypings.log</LastGenOutput>
     </Content>
+    <Content Include="tools\Node\less\lib\lessc.js" />
     <Content Include="tools\Node\less\lib\less\colors.js" />
     <Content Include="tools\Node\less\lib\less\encoder.js" />
     <Content Include="tools\Node\less\lib\less\env.js" />
@@ -1550,12 +1562,7 @@
     <TypeScriptCompile Include="Modules\Common\Helpers\ExcelExportHelper.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BasicProgressDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BulkServiceAction.ts" />
-    <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jspdf\jspdf.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\rsvp\rsvp.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\slickgrid\slickgrid.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\sortablejs\sortablejs.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\serenity\Serenity.CoreLib.d.ts" />
     <Content Include="Modules\MovieDB\Movie\MovieIndex.cshtml" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
@@ -1902,11 +1909,6 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Reporting\PdfExportHelper.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jquery.blockUI\jquery.blockUI.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jquery.cookie\jquery.cookie.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jquery.validation\jquery.validation.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jspdf\jspdf.autotable.d.ts" />
   </ItemGroup>
   <PropertyGroup>
@@ -1938,7 +1940,7 @@
   <Target Name="CompileSiteLess" AfterTargets="AfterBuild">
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.css&quot;">
     </Exec>
-    <Exec Command="&quot;$(TscToolPath)\$(TypeScriptToolsVersion)\$(TscToolExe)&quot; -project &quot;$(ProjectDir)tsconfig.json&quot;" ContinueOnError="true" />
+    <Exec Command="&quot;$(TscToolPath)\$(TypeScriptToolsVersion)\tsc.exe&quot; -project &quot;$(ProjectDir)tsconfig.json&quot;" ContinueOnError="true" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

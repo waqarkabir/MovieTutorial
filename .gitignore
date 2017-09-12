@@ -11,3 +11,4 @@ obj/
 **/*.Script/bin
 **/*.Test/bin
 **/*.Web/App_Data/upload/*
+node_modules/

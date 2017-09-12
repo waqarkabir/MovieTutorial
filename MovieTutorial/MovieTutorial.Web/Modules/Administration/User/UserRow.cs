@@ -63,7 +63,7 @@ namespace MovieTutorial.Administration.Entities
             set { Fields.Email[this] = value; }
         }
 
-        [DisplayName("Password"), Size(50), SetFieldFlags(FieldFlags.ClientSide)]
+        [DisplayName("Password"), Size(50), NotMapped]
         public String Password
         {
             get { return Fields.Password[this]; }
@@ -77,7 +77,7 @@ namespace MovieTutorial.Administration.Entities
             set { Fields.IsActive[this] = value; }
         }
 
-        [DisplayName("Confirm Password"), Size(50), SetFieldFlags(FieldFlags.ClientSide)]
+        [DisplayName("Confirm Password"), Size(50), NotMapped]
         public String PasswordConfirm
         {
             get { return Fields.PasswordConfirm[this]; }

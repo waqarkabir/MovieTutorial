@@ -1,8 +1,13 @@
-﻿var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+﻿var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -16,13 +21,13 @@ var MovieTutorial;
         var PersonDialog = (function (_super) {
             __extends(PersonDialog, _super);
             function PersonDialog() {
-                var _this = this;
-                _super.call(this);
-                this.form = new MovieDB.PersonForm(this.idPrefix);
-                this.moviesGrid = new MovieDB.PersonMovieGrid(this.byId("MoviesGrid"));
-                this.tabs.on('tabsactivate', function (e, i) {
+                var _this = _super.call(this) || this;
+                _this.form = new MovieDB.PersonForm(_this.idPrefix);
+                _this.moviesGrid = new MovieDB.PersonMovieGrid(_this.byId("MoviesGrid"));
+                _this.tabs.on('tabsactivate', function (e, i) {
                     _this.arrange();
                 });
+                return _this;
             }
             PersonDialog.prototype.getFormKey = function () { return MovieDB.PersonForm.formKey; };
             PersonDialog.prototype.getIdProperty = function () { return MovieDB.PersonRow.idProperty; };
@@ -49,7 +54,7 @@ var MovieTutorial;
         var PersonGrid = (function (_super) {
             __extends(PersonGrid, _super);
             function PersonGrid(container) {
-                _super.call(this, container);
+                return _super.call(this, container) || this;
             }
             PersonGrid.prototype.getColumnsKey = function () { return 'MovieDB.Person'; };
             PersonGrid.prototype.getDialogType = function () { return MovieDB.PersonDialog; };
@@ -71,7 +76,7 @@ var MovieTutorial;
         var PersonMovieGrid = (function (_super) {
             __extends(PersonMovieGrid, _super);
             function PersonMovieGrid(container) {
-                _super.call(this, container);
+                return _super.call(this, container) || this;
             }
             PersonMovieGrid.prototype.getColumnsKey = function () { return "MovieDB.PersonMovie"; };
             PersonMovieGrid.prototype.getIdProperty = function () { return MovieDB.MovieCastRow.idProperty; };
@@ -118,7 +123,7 @@ var MovieTutorial;
         var GridEditorDialog = (function (_super) {
             __extends(GridEditorDialog, _super);
             function GridEditorDialog() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             GridEditorDialog.prototype.getIdProperty = function () { return "__id"; };
             GridEditorDialog.prototype.destroy = function () {
@@ -155,8 +160,9 @@ var MovieTutorial;
         var MovieCastEditDialog = (function (_super) {
             __extends(MovieCastEditDialog, _super);
             function MovieCastEditDialog() {
-                _super.call(this);
-                this.form = new MovieDB.MovieCastForm(this.idPrefix);
+                var _this = _super.call(this) || this;
+                _this.form = new MovieDB.MovieCastForm(_this.idPrefix);
+                return _this;
             }
             MovieCastEditDialog.prototype.getFormKey = function () { return MovieDB.MovieCastForm.formKey; };
             MovieCastEditDialog.prototype.getNameProperty = function () { return MovieDB.MovieCastRow.nameProperty; };
@@ -176,8 +182,9 @@ var MovieTutorial;
         var GridEditorBase = (function (_super) {
             __extends(GridEditorBase, _super);
             function GridEditorBase(container) {
-                _super.call(this, container);
-                this.nextId = 1;
+                var _this = _super.call(this, container) || this;
+                _this.nextId = 1;
+                return _this;
             }
             GridEditorBase.prototype.getIdProperty = function () { return "__id"; };
             GridEditorBase.prototype.id = function (entity) {
@@ -303,7 +310,7 @@ var MovieTutorial;
         var MovieCastEditor = (function (_super) {
             __extends(MovieCastEditor, _super);
             function MovieCastEditor(container) {
-                _super.call(this, container);
+                return _super.call(this, container) || this;
             }
             MovieCastEditor.prototype.getColumnsKey = function () { return "MovieDB.MovieCast"; };
             MovieCastEditor.prototype.getDialogType = function () { return MovieDB.MovieCastEditDialog; };
@@ -360,8 +367,9 @@ var MovieTutorial;
         var MovieDialog = (function (_super) {
             __extends(MovieDialog, _super);
             function MovieDialog() {
-                _super.apply(this, arguments);
-                this.form = new MovieDB.MovieForm(this.idPrefix);
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new MovieDB.MovieForm(_this.idPrefix);
+                return _this;
             }
             MovieDialog.prototype.getFormKey = function () { return MovieDB.MovieForm.formKey; };
             MovieDialog.prototype.getIdProperty = function () { return MovieDB.MovieRow.idProperty; };
@@ -384,7 +392,7 @@ var MovieTutorial;
         var MovieGrid = (function (_super) {
             __extends(MovieGrid, _super);
             function MovieGrid(container) {
-                _super.call(this, container);
+                return _super.call(this, container) || this;
             }
             MovieGrid.prototype.getColumnsKey = function () { return 'MovieDB.Movie'; };
             MovieGrid.prototype.getDialogType = function () { return MovieDB.MovieDialog; };
@@ -429,8 +437,9 @@ var MovieTutorial;
         var GenreDialog = (function (_super) {
             __extends(GenreDialog, _super);
             function GenreDialog() {
-                _super.apply(this, arguments);
-                this.form = new MovieDB.GenreForm(this.idPrefix);
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new MovieDB.GenreForm(_this.idPrefix);
+                return _this;
             }
             GenreDialog.prototype.getFormKey = function () { return MovieDB.GenreForm.formKey; };
             GenreDialog.prototype.getIdProperty = function () { return MovieDB.GenreRow.idProperty; };
@@ -453,7 +462,7 @@ var MovieTutorial;
         var GenreGrid = (function (_super) {
             __extends(GenreGrid, _super);
             function GenreGrid(container) {
-                _super.call(this, container);
+                return _super.call(this, container) || this;
             }
             GenreGrid.prototype.getColumnsKey = function () { return 'MovieDB.Genre'; };
             GenreGrid.prototype.getDialogType = function () { return MovieDB.GenreDialog; };
@@ -475,10 +484,9 @@ var MovieTutorial;
         var LoginPanel = (function (_super) {
             __extends(LoginPanel, _super);
             function LoginPanel(container) {
-                var _this = this;
-                _super.call(this, container);
-                this.form = new Membership.LoginForm(this.idPrefix);
-                this.byId('LoginButton').click(function (e) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.LoginForm(_this.idPrefix);
+                _this.byId('LoginButton').click(function (e) {
                     e.preventDefault();
                     if (!_this.validateForm()) {
                         return;
@@ -499,6 +507,7 @@ var MovieTutorial;
                         }
                     });
                 });
+                return _this;
             }
             LoginPanel.prototype.getFormKey = function () { return Membership.LoginForm.formKey; };
             LoginPanel = __decorate([
@@ -516,20 +525,19 @@ var MovieTutorial;
         var SignUpPanel = (function (_super) {
             __extends(SignUpPanel, _super);
             function SignUpPanel(container) {
-                var _this = this;
-                _super.call(this, container);
-                this.form = new Membership.SignUpForm(this.idPrefix);
-                this.form.ConfirmEmail.addValidationRule(this.uniqueName, function (e) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.SignUpForm(_this.idPrefix);
+                _this.form.ConfirmEmail.addValidationRule(_this.uniqueName, function (e) {
                     if (_this.form.ConfirmEmail.value !== _this.form.Email.value) {
                         return Q.text('Validation.EmailConfirm');
                     }
                 });
-                this.form.ConfirmPassword.addValidationRule(this.uniqueName, function (e) {
+                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
                     if (_this.form.ConfirmPassword.value !== _this.form.Password.value) {
                         return Q.text('Validation.PasswordConfirm');
                     }
                 });
-                this.byId('SubmitButton').click(function (e) {
+                _this.byId('SubmitButton').click(function (e) {
                     e.preventDefault();
                     if (!_this.validateForm()) {
                         return;
@@ -548,6 +556,7 @@ var MovieTutorial;
                         }
                     });
                 });
+                return _this;
             }
             SignUpPanel.prototype.getFormKey = function () { return Membership.SignUpForm.formKey; };
             SignUpPanel = __decorate([
@@ -565,20 +574,19 @@ var MovieTutorial;
         var ResetPasswordPanel = (function (_super) {
             __extends(ResetPasswordPanel, _super);
             function ResetPasswordPanel(container) {
-                var _this = this;
-                _super.call(this, container);
-                this.form = new Membership.ResetPasswordForm(this.idPrefix);
-                this.form.NewPassword.addValidationRule(this.uniqueName, function (e) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.ResetPasswordForm(_this.idPrefix);
+                _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
                     if (_this.form.ConfirmPassword.value.length < 7) {
                         return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
                     }
                 });
-                this.form.ConfirmPassword.addValidationRule(this.uniqueName, function (e) {
+                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
                     if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
                         return Q.text('Validation.PasswordConfirm');
                     }
                 });
-                this.byId('SubmitButton').click(function (e) {
+                _this.byId('SubmitButton').click(function (e) {
                     e.preventDefault();
                     if (!_this.validateForm()) {
                         return;
@@ -595,6 +603,7 @@ var MovieTutorial;
                         }
                     });
                 });
+                return _this;
             }
             ResetPasswordPanel.prototype.getFormKey = function () { return Membership.ResetPasswordForm.formKey; };
             ResetPasswordPanel = __decorate([
@@ -612,10 +621,9 @@ var MovieTutorial;
         var ForgotPasswordPanel = (function (_super) {
             __extends(ForgotPasswordPanel, _super);
             function ForgotPasswordPanel(container) {
-                var _this = this;
-                _super.call(this, container);
-                this.form = new Membership.ForgotPasswordForm(this.idPrefix);
-                this.byId('SubmitButton').click(function (e) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.ForgotPasswordForm(_this.idPrefix);
+                _this.byId('SubmitButton').click(function (e) {
                     e.preventDefault();
                     if (!_this.validateForm()) {
                         return;
@@ -631,6 +639,7 @@ var MovieTutorial;
                         }
                     });
                 });
+                return _this;
             }
             ForgotPasswordPanel.prototype.getFormKey = function () { return Membership.ForgotPasswordForm.formKey; };
             ForgotPasswordPanel = __decorate([
@@ -648,20 +657,19 @@ var MovieTutorial;
         var ChangePasswordPanel = (function (_super) {
             __extends(ChangePasswordPanel, _super);
             function ChangePasswordPanel(container) {
-                var _this = this;
-                _super.call(this, container);
-                this.form = new Membership.ChangePasswordForm(this.idPrefix);
-                this.form.NewPassword.addValidationRule(this.uniqueName, function (e) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.ChangePasswordForm(_this.idPrefix);
+                _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
                     if (_this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
                         return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
                     }
                 });
-                this.form.ConfirmPassword.addValidationRule(this.uniqueName, function (e) {
+                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
                     if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
                         return Q.text('Validation.PasswordConfirm');
                     }
                 });
-                this.byId('SubmitButton').click(function (e) {
+                _this.byId('SubmitButton').click(function (e) {
                     e.preventDefault();
                     if (!_this.validateForm()) {
                         return;
@@ -677,6 +685,7 @@ var MovieTutorial;
                         }
                     });
                 });
+                return _this;
             }
             ChangePasswordPanel.prototype.getFormKey = function () { return Membership.ChangePasswordForm.formKey; };
             ChangePasswordPanel = __decorate([
@@ -905,9 +914,9 @@ var MovieTutorial;
         var LanguageSelection = (function (_super) {
             __extends(LanguageSelection, _super);
             function LanguageSelection(select, currentLanguage) {
-                _super.call(this, select);
+                var _this = _super.call(this, select) || this;
                 currentLanguage = Q.coalesce(currentLanguage, 'en');
-                this.change(function (e) {
+                _this.change(function (e) {
                     $.cookie('LanguagePreference', select.val(), {
                         path: Q.Config.applicationPath,
                         expires: 365
@@ -933,6 +942,7 @@ var MovieTutorial;
                     }
                     select.val(currentLanguage);
                 });
+                return _this;
             }
             return LanguageSelection;
         }(Serenity.Widget));
@@ -946,15 +956,15 @@ var MovieTutorial;
         var SidebarSearch = (function (_super) {
             __extends(SidebarSearch, _super);
             function SidebarSearch(input, menuUL) {
-                var _this = this;
-                _super.call(this, input);
+                var _this = _super.call(this, input) || this;
                 new Serenity.QuickSearchInput(input, {
                     onSearch: function (field, text, success) {
                         _this.updateMatchFlags(text);
                         success(true);
                     }
                 });
-                this.menuUL = menuUL;
+                _this.menuUL = menuUL;
+                return _this;
             }
             SidebarSearch.prototype.updateMatchFlags = function (text) {
                 var liList = this.menuUL.find('li').removeClass('non-match');
@@ -999,9 +1009,8 @@ var MovieTutorial;
         var ThemeSelection = (function (_super) {
             __extends(ThemeSelection, _super);
             function ThemeSelection(select) {
-                var _this = this;
-                _super.call(this, select);
-                this.change(function (e) {
+                var _this = _super.call(this, select) || this;
+                _this.change(function (e) {
                     $.cookie('ThemePreference', select.val(), {
                         path: Q.Config.applicationPath,
                         expires: 365
@@ -1021,7 +1030,8 @@ var MovieTutorial;
                 Q.addOption(select, 'yellow-light', Q.text('Site.Layout.ThemeYellowLight'));
                 Q.addOption(select, 'black', Q.text('Site.Layout.ThemeBlack'));
                 Q.addOption(select, 'black-light', Q.text('Site.Layout.ThemeBlackLight'));
-                select.val(this.getCurrentTheme());
+                select.val(_this.getCurrentTheme());
+                return _this;
             }
             ThemeSelection.prototype.getCurrentTheme = function () {
                 var skinClass = Q.first(($('body').attr('class') || '').split(' '), function (x) { return Q.startsWith(x, 'skin-'); });
@@ -1042,7 +1052,7 @@ var MovieTutorial;
         var LanguageForm = (function (_super) {
             __extends(LanguageForm, _super);
             function LanguageForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             LanguageForm.formKey = 'Administration.Language';
             return LanguageForm;
@@ -1096,7 +1106,7 @@ var MovieTutorial;
         var RoleForm = (function (_super) {
             __extends(RoleForm, _super);
             function RoleForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             RoleForm.formKey = 'Administration.Role';
             return RoleForm;
@@ -1200,7 +1210,7 @@ var MovieTutorial;
         var UserForm = (function (_super) {
             __extends(UserForm, _super);
             function UserForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             UserForm.formKey = 'Administration.User';
             return UserForm;
@@ -1348,7 +1358,7 @@ var MovieTutorial;
         var ChangePasswordForm = (function (_super) {
             __extends(ChangePasswordForm, _super);
             function ChangePasswordForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             ChangePasswordForm.formKey = 'Membership.ChangePassword';
             return ChangePasswordForm;
@@ -1364,7 +1374,7 @@ var MovieTutorial;
         var ForgotPasswordForm = (function (_super) {
             __extends(ForgotPasswordForm, _super);
             function ForgotPasswordForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             ForgotPasswordForm.formKey = 'Membership.ForgotPassword';
             return ForgotPasswordForm;
@@ -1380,7 +1390,7 @@ var MovieTutorial;
         var LoginForm = (function (_super) {
             __extends(LoginForm, _super);
             function LoginForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             LoginForm.formKey = 'Membership.Login';
             return LoginForm;
@@ -1396,7 +1406,7 @@ var MovieTutorial;
         var ResetPasswordForm = (function (_super) {
             __extends(ResetPasswordForm, _super);
             function ResetPasswordForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             ResetPasswordForm.formKey = 'Membership.ResetPassword';
             return ResetPasswordForm;
@@ -1412,7 +1422,7 @@ var MovieTutorial;
         var SignUpForm = (function (_super) {
             __extends(SignUpForm, _super);
             function SignUpForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             SignUpForm.formKey = 'Membership.SignUp';
             return SignUpForm;
@@ -1425,11 +1435,11 @@ var MovieTutorial;
 (function (MovieTutorial) {
     var MovieDB;
     (function (MovieDB) {
+        var Gender;
         (function (Gender) {
             Gender[Gender["Male"] = 1] = "Male";
             Gender[Gender["Female"] = 2] = "Female";
-        })(MovieDB.Gender || (MovieDB.Gender = {}));
-        var Gender = MovieDB.Gender;
+        })(Gender = MovieDB.Gender || (MovieDB.Gender = {}));
         Serenity.Decorators.registerEnum(Gender, 'MovieDB.Gender');
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));
@@ -1440,7 +1450,7 @@ var MovieTutorial;
         var GenreForm = (function (_super) {
             __extends(GenreForm, _super);
             function GenreForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             GenreForm.formKey = 'MovieDB.Genre';
             return GenreForm;
@@ -1494,7 +1504,7 @@ var MovieTutorial;
         var MovieCastForm = (function (_super) {
             __extends(MovieCastForm, _super);
             function MovieCastForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             MovieCastForm.formKey = 'MovieDB.MovieCast';
             return MovieCastForm;
@@ -1543,7 +1553,7 @@ var MovieTutorial;
         var MovieForm = (function (_super) {
             __extends(MovieForm, _super);
             function MovieForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             MovieForm.formKey = 'MovieDB.Movie';
             return MovieForm;
@@ -1571,12 +1581,12 @@ var MovieTutorial;
 (function (MovieTutorial) {
     var MovieDB;
     (function (MovieDB) {
+        var MovieKind;
         (function (MovieKind) {
             MovieKind[MovieKind["Film"] = 1] = "Film";
             MovieKind[MovieKind["TvSeries"] = 2] = "TvSeries";
             MovieKind[MovieKind["MiniSeries"] = 3] = "MiniSeries";
-        })(MovieDB.MovieKind || (MovieDB.MovieKind = {}));
-        var MovieKind = MovieDB.MovieKind;
+        })(MovieKind = MovieDB.MovieKind || (MovieDB.MovieKind = {}));
         Serenity.Decorators.registerEnum(MovieKind, 'MovieDB.MovieKind');
     })(MovieDB = MovieTutorial.MovieDB || (MovieTutorial.MovieDB = {}));
 })(MovieTutorial || (MovieTutorial = {}));
@@ -1620,7 +1630,7 @@ var MovieTutorial;
         var PersonForm = (function (_super) {
             __extends(PersonForm, _super);
             function PersonForm() {
-                _super.apply(this, arguments);
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             PersonForm.formKey = 'MovieDB.Person';
             return PersonForm;
@@ -1672,15 +1682,15 @@ var MovieTutorial;
     var BasicProgressDialog = (function (_super) {
         __extends(BasicProgressDialog, _super);
         function BasicProgressDialog() {
-            var _this = this;
-            _super.call(this);
-            this.byId('ProgressBar').progressbar({
+            var _this = _super.call(this) || this;
+            _this.byId('ProgressBar').progressbar({
                 max: 100,
                 value: 0,
                 change: function (e, v) {
                     _this.byId('ProgressLabel').text(_this.value + ' / ' + _this.max);
                 }
             });
+            return _this;
         }
         Object.defineProperty(BasicProgressDialog.prototype, "max", {
             get: function () {
@@ -2013,7 +2023,7 @@ var MovieTutorial;
         var RoleCheckEditor = (function (_super) {
             __extends(RoleCheckEditor, _super);
             function RoleCheckEditor(div) {
-                _super.call(this, div);
+                return _super.call(this, div) || this;
             }
             RoleCheckEditor.prototype.createToolbarExtensions = function () {
                 var _this = this;
@@ -2027,10 +2037,10 @@ var MovieTutorial;
                 return [];
             };
             RoleCheckEditor.prototype.getTreeItems = function () {
-                return Administration.RoleRow.getLookup().items.map(function (role) { return {
+                return Administration.RoleRow.getLookup().items.map(function (role) { return ({
                     id: role.RoleId.toString(),
                     text: role.RoleName
-                }; });
+                }); });
             };
             RoleCheckEditor.prototype.onViewFilter = function (item) {
                 return _super.prototype.onViewFilter.call(this, item) &&
@@ -2053,14 +2063,14 @@ var MovieTutorial;
         var UserRoleDialog = (function (_super) {
             __extends(UserRoleDialog, _super);
             function UserRoleDialog(opt) {
-                var _this = this;
-                _super.call(this, opt);
-                this.permissions = new Administration.RoleCheckEditor(this.byId('Roles'));
+                var _this = _super.call(this, opt) || this;
+                _this.permissions = new Administration.RoleCheckEditor(_this.byId('Roles'));
                 Administration.UserRoleService.List({
-                    UserID: this.options.userID
+                    UserID: _this.options.userID
                 }, function (response) {
                     _this.permissions.value = response.Entities.map(function (x) { return x.toString(); });
                 });
+                return _this;
             }
             UserRoleDialog.prototype.getDialogOptions = function () {
                 var _this = this;
@@ -2101,20 +2111,20 @@ var MovieTutorial;
         var PermissionCheckEditor = (function (_super) {
             __extends(PermissionCheckEditor, _super);
             function PermissionCheckEditor(container, opt) {
-                var _this = this;
-                _super.call(this, container, opt);
-                this.rolePermissions = {};
+                var _this = _super.call(this, container, opt) || this;
+                _this.rolePermissions = {};
                 var titleByKey = {};
-                var permissionKeys = this.getSortedGroupAndPermissionKeys(titleByKey);
-                var items = permissionKeys.map(function (key) { return {
+                var permissionKeys = _this.getSortedGroupAndPermissionKeys(titleByKey);
+                var items = permissionKeys.map(function (key) { return ({
                     Key: key,
                     ParentKey: _this.getParentKey(key),
                     Title: titleByKey[key],
                     GrantRevoke: null,
                     IsGroup: key.charAt(key.length - 1) === ':'
-                }; });
-                this.byParentKey = Q.toGrouping(items, function (x) { return x.ParentKey; });
-                this.setItems(items);
+                }); });
+                _this.byParentKey = Q.toGrouping(items, function (x) { return x.ParentKey; });
+                _this.setItems(items);
+                return _this;
             }
             PermissionCheckEditor.prototype.getIdProperty = function () { return "Key"; };
             PermissionCheckEditor.prototype.getItemGrantRevokeClass = function (item, grant) {
@@ -2373,25 +2383,25 @@ var MovieTutorial;
         var UserPermissionDialog = (function (_super) {
             __extends(UserPermissionDialog, _super);
             function UserPermissionDialog(opt) {
-                var _this = this;
-                _super.call(this, opt);
-                this.permissions = new Administration.PermissionCheckEditor(this.byId('Permissions'), {
+                var _this = _super.call(this, opt) || this;
+                _this.permissions = new Administration.PermissionCheckEditor(_this.byId('Permissions'), {
                     showRevoke: true
                 });
                 Administration.UserPermissionService.List({
-                    UserID: this.options.userID,
+                    UserID: _this.options.userID,
                     Module: null,
                     Submodule: null
                 }, function (response) {
                     _this.permissions.set_value(response.Entities);
                 });
                 Administration.UserPermissionService.ListRolePermissions({
-                    UserID: this.options.userID,
+                    UserID: _this.options.userID,
                     Module: null,
                     Submodule: null,
                 }, function (response) {
                     _this.permissions.set_rolePermissions(response.Entities);
                 });
+                return _this;
             }
             UserPermissionDialog.prototype.getDialogOptions = function () {
                 var _this = this;
@@ -2413,7 +2423,8 @@ var MovieTutorial;
                     }, {
                         text: Q.text('Dialogs.CancelButton'),
                         click: function () { return _this.dialogClose(); }
-                    }];
+                    }
+                ];
                 opt.title = Q.format(Q.text('Site.UserPermissionDialog.DialogTitle'), this.options.username);
                 return opt;
             };
@@ -2435,17 +2446,17 @@ var MovieTutorial;
         var UserDialog = (function (_super) {
             __extends(UserDialog, _super);
             function UserDialog() {
-                var _this = this;
-                _super.call(this);
-                this.form = new Administration.UserForm(this.idPrefix);
-                this.form.Password.addValidationRule(this.uniqueName, function (e) {
+                var _this = _super.call(this) || this;
+                _this.form = new Administration.UserForm(_this.idPrefix);
+                _this.form.Password.addValidationRule(_this.uniqueName, function (e) {
                     if (_this.form.Password.value.length < 7)
                         return "Password must be at least 7 characters!";
                 });
-                this.form.PasswordConfirm.addValidationRule(this.uniqueName, function (e) {
+                _this.form.PasswordConfirm.addValidationRule(_this.uniqueName, function (e) {
                     if (_this.form.Password.value != _this.form.PasswordConfirm.value)
                         return "The passwords entered doesn't match!";
                 });
+                return _this;
             }
             UserDialog.prototype.getFormKey = function () { return Administration.UserForm.formKey; };
             UserDialog.prototype.getIdProperty = function () { return Administration.UserRow.idProperty; };
@@ -2508,7 +2519,7 @@ var MovieTutorial;
         var UserGrid = (function (_super) {
             __extends(UserGrid, _super);
             function UserGrid(container) {
-                _super.call(this, container);
+                return _super.call(this, container) || this;
             }
             UserGrid.prototype.getColumnsKey = function () { return "Administration.User"; };
             UserGrid.prototype.getDialogType = function () { return Administration.UserDialog; };
@@ -2550,9 +2561,8 @@ var MovieTutorial;
         var TranslationGrid = (function (_super) {
             __extends(TranslationGrid, _super);
             function TranslationGrid(container) {
-                var _this = this;
-                _super.call(this, container);
-                this.element.on('keyup.' + this.uniqueName + ' change.' + this.uniqueName, 'input.custom-text', function (e) {
+                var _this = _super.call(this, container) || this;
+                _this.element.on('keyup.' + _this.uniqueName + ' change.' + _this.uniqueName, 'input.custom-text', function (e) {
                     var value = Q.trimToNull($(e.target).val());
                     if (value === '') {
                         value = null;
@@ -2560,6 +2570,7 @@ var MovieTutorial;
                     _this.view.getItemById($(e.target).data('key')).CustomText = value;
                     _this.hasChanges = true;
                 });
+                return _this;
             }
             TranslationGrid.prototype.getIdProperty = function () { return "Key"; };
             TranslationGrid.prototype.getLocalTextPrefix = function () { return "Administration.Translation"; };
@@ -2747,18 +2758,18 @@ var MovieTutorial;
         var RolePermissionDialog = (function (_super) {
             __extends(RolePermissionDialog, _super);
             function RolePermissionDialog(opt) {
-                var _this = this;
-                _super.call(this, opt);
-                this.permissions = new Administration.PermissionCheckEditor(this.byId('Permissions'), {
+                var _this = _super.call(this, opt) || this;
+                _this.permissions = new Administration.PermissionCheckEditor(_this.byId('Permissions'), {
                     showRevoke: false
                 });
                 Administration.RolePermissionService.List({
-                    RoleID: this.options.roleID,
+                    RoleID: _this.options.roleID,
                     Module: null,
                     Submodule: null
                 }, function (response) {
                     _this.permissions.set_value(response.Entities.map(function (x) { return ({ PermissionKey: x }); }));
                 });
+                return _this;
             }
             RolePermissionDialog.prototype.getDialogOptions = function () {
                 var _this = this;
@@ -2780,7 +2791,8 @@ var MovieTutorial;
                     }, {
                         text: Q.text('Dialogs.CancelButton'),
                         click: function () { return _this.dialogClose(); }
-                    }];
+                    }
+                ];
                 opt.title = Q.format(Q.text('Site.RolePermissionDialog.DialogTitle'), this.options.title);
                 return opt;
             };
@@ -2802,8 +2814,9 @@ var MovieTutorial;
         var RoleDialog = (function (_super) {
             __extends(RoleDialog, _super);
             function RoleDialog() {
-                _super.apply(this, arguments);
-                this.form = new Administration.RoleForm(this.idPrefix);
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Administration.RoleForm(_this.idPrefix);
+                return _this;
             }
             RoleDialog.prototype.getFormKey = function () { return Administration.RoleForm.formKey; };
             RoleDialog.prototype.getIdProperty = function () { return Administration.RoleRow.idProperty; };
@@ -2845,7 +2858,7 @@ var MovieTutorial;
         var RoleGrid = (function (_super) {
             __extends(RoleGrid, _super);
             function RoleGrid(container) {
-                _super.call(this, container);
+                return _super.call(this, container) || this;
             }
             RoleGrid.prototype.getColumnsKey = function () { return "Administration.Role"; };
             RoleGrid.prototype.getDialogType = function () { return Administration.RoleDialog; };
@@ -2870,8 +2883,9 @@ var MovieTutorial;
         var LanguageDialog = (function (_super) {
             __extends(LanguageDialog, _super);
             function LanguageDialog() {
-                _super.apply(this, arguments);
-                this.form = new Administration.LanguageForm(this.idPrefix);
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Administration.LanguageForm(_this.idPrefix);
+                return _this;
             }
             LanguageDialog.prototype.getFormKey = function () { return Administration.LanguageForm.formKey; };
             LanguageDialog.prototype.getIdProperty = function () { return Administration.LanguageRow.idProperty; };
@@ -2893,7 +2907,7 @@ var MovieTutorial;
         var LanguageGrid = (function (_super) {
             __extends(LanguageGrid, _super);
             function LanguageGrid(container) {
-                _super.call(this, container);
+                return _super.call(this, container) || this;
             }
             LanguageGrid.prototype.getColumnsKey = function () { return "Administration.Language"; };
             LanguageGrid.prototype.getDialogType = function () { return Administration.LanguageDialog; };
